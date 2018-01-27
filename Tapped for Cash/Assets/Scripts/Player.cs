@@ -14,6 +14,11 @@ public class Player : MonoBehaviour {
     private Vector2 deltaPos = Vector2.zero;
     private float mRotation = 0f;
 
+    public bool IsScanning()
+    {
+        return isScanning;
+    }
+
     private void Awake()
     {
         mRigidBody2D = GetComponent<Rigidbody2D>();
@@ -58,7 +63,7 @@ public class Player : MonoBehaviour {
         //Move Inputs
         deltaPos = Vector2.zero;
    
-		if (Input.GetKey(KeyCode.W))
+		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             deltaPos.y += m_moveSpeed * (isScanning ? m_scanMoveMultiplier : 1f);
         }
@@ -82,7 +87,7 @@ public class Player : MonoBehaviour {
 
         if (newVelocity.magnitude > m_maxSpeed)
         {
-            Debug.Log("capped speed");
+            //Debug.Log("capped speed");
             newVelocity = newVelocity.normalized * m_maxSpeed;
 
         }
@@ -103,5 +108,15 @@ public class Player : MonoBehaviour {
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("player trigger");
+        if (other.name == "BasicPlayer")
+        {
+            Player playa = other.GetComponent<Player>();
+            Debug.Log("Player overlap start");
+
+        }
+    }
 
 }
