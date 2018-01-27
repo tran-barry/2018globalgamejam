@@ -39,7 +39,7 @@ public class Player : MonoBehaviour {
 
         //Rotate
         bool isRotating = false;
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             gameObject.transform.Rotate(0, 0, (rotateSpeed * (isScanning ? m_scanMoveMultiplier : 1f)));
             isRotating = true;
@@ -53,7 +53,7 @@ public class Player : MonoBehaviour {
         //adjust momentum to forward
         if (isRotating)
         {
-            Debug.Log(transform.up.normalized);
+            //Debug.Log(transform.up.normalized);
             mRigidBody2D.velocity = (transform.up.normalized) * mRigidBody2D.velocity.magnitude;
         }
         
@@ -64,7 +64,7 @@ public class Player : MonoBehaviour {
         Vector2 deltaPos = Vector2.zero;
         bool isStandingStill = true;
    
-		if (Input.GetKey(KeyCode.W))
+		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             deltaPos.y += m_moveSpeed * (isScanning ? m_scanMoveMultiplier : 1f);
             isStandingStill = false;
@@ -82,7 +82,7 @@ public class Player : MonoBehaviour {
         mRigidBody2D.AddRelativeForce(deltaPos);
         if (newVelocity.magnitude > m_maxSpeed)
         {
-            Debug.Log("capped speed");
+            //Debug.Log("capped speed");
             newVelocity = newVelocity.normalized * m_maxSpeed;
             
         }
@@ -97,4 +97,16 @@ public class Player : MonoBehaviour {
             mRigidBody2D.angularVelocity = 0f;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("player trigger");
+        if (other.name == "BasicPlayer")
+        {
+            Player playa = other.GetComponent<Player>();
+            Debug.Log("Player overlap start");
+
+        }
+    }
+
 }
