@@ -1,0 +1,12 @@
+syntax: glob
+.DS_Store
+*.sln
+*.userprefs
+*.csproj
+*.pidb
+*.unitypackage
+
+syntax: regexp
+^Tapped for Cash/Build/.*
+^Tapped for Cash/Library/.*
+^Tapped for Cash/Temp/.*
