@@ -26,7 +26,10 @@ public class Dude : MonoBehaviour {
         {
             Player playa = collision.GetComponent<Player>();
             if (playa.IsScanning())
-                Debug.Log("Player overlap start");
+            {
+                float dist = Vector3.Distance(this.transform.position, collision.transform.position);
+                Debug.Log("Player overlap start: " + dist);
+            }
 
         }
     }
