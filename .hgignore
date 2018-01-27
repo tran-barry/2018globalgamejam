@@ -11,3 +11,5 @@ syntax: regexp
 ^Tapped for Cash/Library/.*
 ^Tapped for Cash/Temp/.*
 ^Tapped for Cash/.vs/.*
+^Tapped for Cash/.vscode/.*
+^Tapped for Cash/obj/.*
