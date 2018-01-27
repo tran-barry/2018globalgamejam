@@ -10,3 +10,4 @@ syntax: regexp
 ^Tapped for Cash/Build/.*
 ^Tapped for Cash/Library/.*
 ^Tapped for Cash/Temp/.*
+^Tapped for Cash/.vs/.*
