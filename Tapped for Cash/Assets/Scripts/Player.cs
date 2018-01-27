@@ -10,9 +10,13 @@ public class Player : MonoBehaviour {
     private float m_maxSpeed = 1.5f;
     private float rotateSpeed = 3f;
     private bool isScanning = false;
+    int playerLayer = (~(1 << 8));
 
     private Vector2 deltaPos = Vector2.zero;
     private float mRotation = 0f;
+
+
+    public CardSlot[] tempCardSlots = new CardSlot[3];
 
     public bool IsScanning()
     {
@@ -72,14 +76,16 @@ public class Player : MonoBehaviour {
             deltaPos.y -= m_moveSpeed * (isScanning ? m_scanMoveMultiplier : 1f);
         }
 
+
+        CheckAllSlots();
         
     }
 
 
     private void FixedUpdate()
     {
-        gameObject.transform.Rotate(0, 0, mRotation);
-        mRigidBody2D.AddRelativeForce(deltaPos);
+        gameObject.transform.Rotate(0, 0, mRotation*Time.timeScale);
+        mRigidBody2D.AddRelativeForce(deltaPos*Time.timeScale);
 
         //cap velocity
         Vector2 newVelocity = mRigidBody2D.velocity;
@@ -104,7 +110,6 @@ public class Player : MonoBehaviour {
         }
         else
         {//adjust momentum to forward
-            Debug.Log(transform.up.normalized);
             mRigidBody2D.velocity = (transform.up.normalized) * mRigidBody2D.velocity.magnitude;
         }
     }
@@ -118,6 +123,109 @@ public class Player : MonoBehaviour {
             Debug.Log("Player overlap start");
 
         }
+
+        if (other.tag == "Card")
+        {
+            //Debug.Log("Card!!!");
+            //add card to array, if possible
+            int nextAvailable = FindAvailableCardSlot();
+            if (nextAvailable != -1)
+            {
+                
+                tempCardSlots[nextAvailable].Add(other.GetComponent<TempCard>());
+            }
+
+        }
     }
 
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Card")
+        {
+            //remove card from slot, if found
+            int otherId = other.GetComponent<TempCard>().ID;
+            for (int i = 0; i < 3; ++i)
+            {
+                if (tempCardSlots[i].slotFilled && tempCardSlots[i].card.ID == otherId)
+                {
+                    tempCardSlots[i].Remove();
+                    break;
+                }
+            }
+
+        }
+    }
+
+    private int FindAvailableCardSlot()
+    {
+        for (int i = 0; i < 3; ++i)
+        {
+            if (!tempCardSlots[i].slotFilled)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private bool CheckLOS(Vector2 startPos, Vector2 endPos)
+    {
+        RaycastHit2D hit2D = Physics2D.Raycast(startPos, endPos - startPos, (endPos - startPos).magnitude, playerLayer);
+        Debug.DrawRay(startPos, endPos - startPos, Color.red);
+        // Debug.Log(startPos + "," + endPos);
+        Debug.Log(hit2D.collider.gameObject);
+        if (hit2D.collider.gameObject.tag == "Card")
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private void CheckAllSlots()
+    {
+        for (int i = 0; i < 3; ++i)
+        {
+            if (tempCardSlots[i].slotFilled)
+            {
+                Debug.Log(CheckLOS(transform.position, tempCardSlots[i].card.transform.position));
+            }
+        }
+    }
+
+    
+
 }
+
+[System.Serializable]
+public class CardSlot
+{
+    public TempCard card = null;
+    public bool slotFilled = false;
+    public float percentComplete = 0f;
+    public bool isDrained = false;
+
+    public void Remove()
+    {
+        card = null;
+        slotFilled = false;
+        percentComplete = 0f;
+        isDrained = false;
+    }
+
+    public void Add(TempCard tempCard)
+    {
+        if (!slotFilled)
+        {
+            card = tempCard;
+            slotFilled = true;
+        }
+        else
+        {
+            Debug.Log("Why are you adding to a filled slot?");
+        }
+        
+    }
+}
+
+
