@@ -11,6 +11,17 @@ public class Player : MonoBehaviour {
     private float rotateSpeed = 3f;
     private bool isScanning = false;
 
+<<<<<<< working copy
+<<<<<<< working copy
+    private Vector2 deltaPos = Vector2.zero;
+    private float mRotation = 0f;
+=======
+    public bool IsScanning()
+    {
+        return isScanning;
+    }
+>>>>>>> merge rev
+=======
     private Vector2 deltaPos = Vector2.zero;
     private float mRotation = 0f;
 
@@ -18,6 +29,7 @@ public class Player : MonoBehaviour {
     {
         return isScanning;
     }
+>>>>>>> merge rev
 
     private void Awake()
     {
@@ -45,9 +57,23 @@ public class Player : MonoBehaviour {
             scanner.SetActive(isScanning);
         }
 
+<<<<<<< working copy
+<<<<<<< working copy
         //Rotation Inputs
         mRotation = 0f;
+        if (Input.GetKey(KeyCode.A))
+=======
+        //Rotate
+        bool isRotating = false;
+=======
+        // Rotation Inputs
+        mRotation = 0f;
+>>>>>>> merge rev
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+<<<<<<< working copy
+>>>>>>> merge rev
+=======
+>>>>>>> merge rev
         {
             mRotation = rotateSpeed * (isScanning ? m_scanMoveMultiplier : 1f);
         }
@@ -56,25 +82,42 @@ public class Player : MonoBehaviour {
             mRotation = -rotateSpeed * (isScanning ? m_scanMoveMultiplier : 1f);
         }
 
+<<<<<<< working copy
+<<<<<<< working copy
+=======
+        //adjust momentum to forward
+        if (isRotating)
+        {
+            //Debug.Log(transform.up.normalized);
+            mRigidBody2D.velocity = (transform.up.normalized) * mRigidBody2D.velocity.magnitude;
+        }
+>>>>>>> merge rev
         
         
         
         
+=======
+>>>>>>> merge rev
         //Move Inputs
         deltaPos = Vector2.zero;
    
-<<<<<<< working copy
 		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-=======
-	if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
->>>>>>> merge rev
         {
             deltaPos.y += m_moveSpeed * (isScanning ? m_scanMoveMultiplier : 1f);
         }
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             deltaPos.y -= m_moveSpeed * (isScanning ? m_scanMoveMultiplier : 1f);
+<<<<<<< working copy
         }
+=======
+        }   
+    }
+
+    private void FixedUpdate()
+    {
+        mRigidBody2D.AddRelativeForce(deltaPos);
+>>>>>>> merge rev
 
         
     }
@@ -82,13 +125,16 @@ public class Player : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        gameObject.transform.Rotate(0, 0, mRotation);
         mRigidBody2D.AddRelativeForce(deltaPos);
 
         //cap velocity
         Vector2 newVelocity = mRigidBody2D.velocity;
 
+<<<<<<< working copy
         //gameObject.transform.Translate(deltaPos);
+=======
+        mRigidBody2D.AddRelativeForce(deltaPos);
+>>>>>>> merge rev
 
         if (newVelocity.magnitude > m_maxSpeed)
         {
@@ -96,13 +142,21 @@ public class Player : MonoBehaviour {
             newVelocity = newVelocity.normalized * m_maxSpeed;
 
         }
+<<<<<<< working copy
         if (deltaPos ==Vector2.zero)
+=======
+        if (deltaPos == Vector2.zero)
+>>>>>>> merge rev
         {
             newVelocity *= 0.9f;
         }
         mRigidBody2D.velocity = newVelocity;
 
+<<<<<<< working copy
         if (mRotation==0)
+=======
+        if (mRotation == 0)
+>>>>>>> merge rev
         { //stop rotating
             mRigidBody2D.angularVelocity = 0f;
         }
@@ -113,6 +167,9 @@ public class Player : MonoBehaviour {
         }
     }
 
+<<<<<<< working copy
+<<<<<<< working copy
+=======
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("player trigger");
@@ -123,5 +180,18 @@ public class Player : MonoBehaviour {
 
         }
     }
+>>>>>>> merge rev
 
+}=======
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("player trigger");
+        if (other.name == "BasicPlayer")
+        {
+            Player playa = other.GetComponent<Player>();
+            Debug.Log("Player overlap start");
+
+        }
+    }
 }
+>>>>>>> merge rev

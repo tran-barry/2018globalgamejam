@@ -47,7 +47,7 @@ public class Player : MonoBehaviour {
 
         //Rotation Inputs
         mRotation = 0f;
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             mRotation = rotateSpeed * (isScanning ? m_scanMoveMultiplier : 1f);
         }
@@ -63,7 +63,7 @@ public class Player : MonoBehaviour {
         //Move Inputs
         deltaPos = Vector2.zero;
    
-		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+	if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             deltaPos.y += m_moveSpeed * (isScanning ? m_scanMoveMultiplier : 1f);
         }
