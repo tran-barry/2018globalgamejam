@@ -6,7 +6,7 @@ public class Player : MonoBehaviour {
     private Rigidbody2D mRigidBody2D;
     private GameObject scanner;
     private float m_scanMoveMultiplier = 0.5f;
-    private float m_moveSpeed = 200f;
+    private float m_moveSpeed = 2f;
     private float m_maxSpeed = 1.5f;
     private float rotateSpeed = 3f;
     private bool isScanning = false;
@@ -89,18 +89,8 @@ public class Player : MonoBehaviour {
 
     private void FixedUpdate()
     {
-<<<<<<< working copy
         gameObject.transform.Rotate(0, 0, mRotation*Time.timeScale);
         mRigidBody2D.AddRelativeForce(deltaPos*Time.timeScale);
-=======
-        if (Time.timeScale == 0)
-        {
-            return;
-        }
-
-        gameObject.transform.Rotate(0, 0, mRotation);
-        mRigidBody2D.AddRelativeForce(deltaPos);
->>>>>>> merge rev
 
         //cap velocity
         Vector2 newVelocity = mRigidBody2D.velocity;

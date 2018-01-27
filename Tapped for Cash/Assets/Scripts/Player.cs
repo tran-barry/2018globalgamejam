@@ -17,6 +17,8 @@ public class Player : MonoBehaviour {
 
 
     public CardSlot[] tempCardSlots = new CardSlot[3];
+    public AudioClip PhoneOnSound;
+    public AudioClip PhoneOffSound;
 
     public bool IsScanning()
     {
@@ -46,10 +48,12 @@ public class Player : MonoBehaviour {
             if(isScanning)
             {
                 isScanning = false;
+                SoundManager.instance.PlaySingle(PhoneOffSound);
             }
             else
             {
                 isScanning = true;
+                SoundManager.instance.PlaySingle(PhoneOnSound);
             }
             scanner.SetActive(isScanning);
         }
