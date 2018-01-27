@@ -90,7 +90,6 @@ public class Player : MonoBehaviour {
         //cap velocity
         Vector2 newVelocity = mRigidBody2D.velocity;
         
-        gameObject.transform.Translate(deltaPos);
         mRigidBody2D.AddRelativeForce(deltaPos);
         if (newVelocity.magnitude > m_maxSpeed)
         {
