@@ -6,7 +6,6 @@ public class Player : MonoBehaviour {
     private Rigidbody2D mRigidBody2D;
     private GameObject scanner;
     private float m_scanMoveMultiplier = 0.5f;
-    private float m_moveSpeed = 0.2f;
     private float m_moveSpeed = 2f;
     private float m_maxSpeed = 1.5f;
     private float rotateSpeed = 3f;
@@ -39,12 +38,8 @@ public class Player : MonoBehaviour {
         }
 
         //Rotate
-<<<<<<< working copy
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-=======
         bool isRotating = false;
         if (Input.GetKey(KeyCode.A))
->>>>>>> merge rev
         {
             gameObject.transform.Rotate(0, 0, (rotateSpeed * (isScanning ? m_scanMoveMultiplier : 1f)));
             isRotating = true;
@@ -65,18 +60,11 @@ public class Player : MonoBehaviour {
         
         
         //Move
-<<<<<<< working copy
-
-
-        Vector3 deltaPos = Vector3.forward;
-        deltaPos.z = 0f;
-		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-=======
+	
         Vector2 deltaPos = Vector2.zero;
         bool isStandingStill = true;
    
 		if (Input.GetKey(KeyCode.W))
->>>>>>> merge rev
         {
             deltaPos.y += m_moveSpeed * (isScanning ? m_scanMoveMultiplier : 1f);
             isStandingStill = false;
@@ -90,7 +78,7 @@ public class Player : MonoBehaviour {
         //cap velocity
         Vector2 newVelocity = mRigidBody2D.velocity;
         
-        gameObject.transform.Translate(deltaPos);
+        //gameObject.transform.Translate(deltaPos);
         mRigidBody2D.AddRelativeForce(deltaPos);
         if (newVelocity.magnitude > m_maxSpeed)
         {
