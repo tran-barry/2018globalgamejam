@@ -78,6 +78,7 @@ public class Player : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        gameObject.transform.Rotate(0, 0, mRotation);
         mRigidBody2D.AddRelativeForce(deltaPos);
 
         //cap velocity
