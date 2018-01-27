@@ -11,6 +11,11 @@ public class Player : MonoBehaviour {
     private float rotateSpeed = 3f;
     private bool isScanning = false;
 
+    public bool IsScanning()
+    {
+        return isScanning;
+    }
+
     private void Awake()
     {
         mRigidBody2D = GetComponent<Rigidbody2D>();
