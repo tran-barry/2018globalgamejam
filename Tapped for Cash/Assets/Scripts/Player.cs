@@ -6,7 +6,7 @@ public class Player : MonoBehaviour {
     private Rigidbody2D mRigidBody2D;
     private GameObject scanner;
     private float m_scanMoveMultiplier = 0.5f;
-    private float m_moveSpeed = 2f;
+    private float m_moveSpeed = 200f;
     private float m_maxSpeed = 1.5f;
     private float rotateSpeed = 3f;
     private bool isScanning = false;
@@ -31,6 +31,11 @@ public class Player : MonoBehaviour {
 	}
 	
 	void Update () {
+	    if (Time.timeScale == 0)
+	    {
+	        return;
+	    }
+
         // Toggle scan
         if(Input.GetKeyDown(KeyCode.Space))
         {
@@ -63,7 +68,7 @@ public class Player : MonoBehaviour {
         //Move Inputs
         deltaPos = Vector2.zero;
    
-	if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+	    if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             deltaPos.y += m_moveSpeed * (isScanning ? m_scanMoveMultiplier : 1f);
         }
@@ -78,6 +83,11 @@ public class Player : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
+
         gameObject.transform.Rotate(0, 0, mRotation);
         mRigidBody2D.AddRelativeForce(deltaPos);
 
