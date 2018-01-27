@@ -14,6 +14,9 @@ public class Player : MonoBehaviour {
     private Vector2 deltaPos = Vector2.zero;
     private float mRotation = 0f;
 
+    public AudioClip PhoneOnSound;
+    public AudioClip PhoneOffSound;
+
     public bool IsScanning()
     {
         return isScanning;
@@ -42,10 +45,12 @@ public class Player : MonoBehaviour {
             if(isScanning)
             {
                 isScanning = false;
+                SoundManager.instance.PlaySingle(PhoneOffSound);
             }
             else
             {
                 isScanning = true;
+                SoundManager.instance.PlaySingle(PhoneOnSound);
             }
             scanner.SetActive(isScanning);
         }
