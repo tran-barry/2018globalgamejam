@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject titleScreen;
     [SerializeField] private GameObject endScreen;
-    [SerializeField] private LockdownTimer lockdownTimer;
 
     enum GameState
     {
@@ -33,7 +32,6 @@ public class GameManager : MonoBehaviour {
                 pausePanel.SetActive(false);
                 titleScreen.SetActive(true);
                 endScreen.SetActive(false);
-                SoundManager.instance.Init();
                 return;
             case GameState.Active:
                 Time.timeScale = 1f;
@@ -70,7 +68,7 @@ public class GameManager : MonoBehaviour {
     void Start()
     {
         _gamestate = new GameState();
-        RestartGame();
+        ChangeState(GameState.StartScreen);
     }
 
     void Update()
@@ -172,11 +170,6 @@ public class GameManager : MonoBehaviour {
     private void Win(int cash)
     {
 
-    }
-
-    public void RestartGame()
-    {
-        ChangeState(GameState.StartScreen);
     }
 
     public void StartGame()
