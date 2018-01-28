@@ -5,6 +5,8 @@ syntax: glob
 *.csproj
 *.pidb
 *.unitypackage
+*.orig
+*.orig.meta
 
 syntax: regexp
 ^Tapped for Cash/Build/.*
