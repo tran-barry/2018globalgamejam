@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TempCard : MonoBehaviour {
-    public enum Brand { PowerCard, EuroExpress, Explore, Vista, CentralOne }
-
     static int cardCount = 0;
     private int m_id;
     public int ID { get { return m_id; } }
+    private GameManager.CardImage cardImage = GameManager.CardImage.CentralOne;
+    public GameManager.CardImage CardImage { get { return cardImage; } }
     private string cardNumber = string.Empty;
     public string CardNumber { get { return cardNumber; } }
     private bool m_collected = false;
     public bool Collected { get { return m_collected; } set { m_collected = value; } }
     private float m_cash;
     public float Cash { get { return m_cash; } }
-    private Brand m_brand = Brand.PowerCard;
-    public Brand CardBrand { get { return m_brand; } }
+    private GameManager.CardImage m_CardImage = GameManager.CardImage.PowerCard;
+    public GameManager.CardImage CardBrand { get { return m_CardImage; } }
 
 
 
@@ -38,6 +38,6 @@ public class TempCard : MonoBehaviour {
         
         cardNumber = "**** **** **** " + finalFourDigits;
         m_cash = cash;
-        m_brand = (Brand)brandID;
+        m_CardImage = (GameManager.CardImage)brandID;
     }
 }

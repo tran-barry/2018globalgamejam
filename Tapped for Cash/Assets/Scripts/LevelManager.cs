@@ -53,7 +53,7 @@ public class LevelManager : MonoBehaviour {
 
         for (int i = 0; i < cardCount; ++i)
         {
-            cardObjects[i].GetComponent<TempCard>().InitializeCard(uniqueCard4Digits[i], randomWeights[i]*perWeight, Random.Range(0,5));
+            cardObjects[i].GetComponent<TempCard>().InitializeCard(uniqueCard4Digits[i], randomWeights[i]*perWeight, Random.Range(1,6));
         }
 
 

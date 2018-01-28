@@ -18,7 +18,8 @@ public class Phone : MonoBehaviour {
     
     CarrierBar carrierBar;
     EnemyPanel[] enemyPanel = new EnemyPanel[3];
-    
+    Notification notification;
+
 
     [Header("Carrier bar")]
     public bool safety;
@@ -26,7 +27,7 @@ public class Phone : MonoBehaviour {
 
     [Header("Panel choice")]
     [Range(0, 2)]
-    public int enemyPanelControl;
+    public int slot;
 
     [Header("Enemy panel")]
     [Range(0,3)]
@@ -48,6 +49,7 @@ public class Phone : MonoBehaviour {
         enemyPanel[0] = GameObject.Find("EnemyPanel A").GetComponent<EnemyPanel>();
         enemyPanel[1] = GameObject.Find("EnemyPanel B").GetComponent<EnemyPanel>();
         enemyPanel[2] = GameObject.Find("EnemyPanel C").GetComponent<EnemyPanel>();
+        notification = GameObject.Find("Notification").GetComponent<Notification>();
     }
 	
 	// Update is called once per frame
@@ -62,8 +64,9 @@ public class Phone : MonoBehaviour {
         Money(money);
         Signal(signal);
         Progression(progression);
+        
         CashValue(cashValue);
-        Hider(hider);
+
         if (showPhone)
         {
             TakePhoneOut();
@@ -73,36 +76,55 @@ public class Phone : MonoBehaviour {
             PutPhoneAway();
         }
 	}
-    
+      
+
+    // CARRIER BAR
     public void Safety(bool fSafety)
     {
         carrierBar.Safety(fSafety);
     }
 
-    public void Money(int cashModif)
+    public void Money(int fMoney)
     {
 
-        carrierBar.Money(cashModif);
+        carrierBar.Money(fMoney);
     }
 
+
+    // ENEMY PANEL SELECTION
+    public void Slot(int enemyControl)
+    {
+        slot = enemyControl;
+    }
+
+
+    // PANEL MODIFICATION
     public void Signal(int fSignal)
     {
-        enemyPanel[enemyPanelControl].Signal(fSignal);
+        enemyPanel[slot].Signal(fSignal);
     }
 
     public void Progression(int fProgression)
     {
-        enemyPanel[enemyPanelControl].Progression(fProgression);
+        enemyPanel[slot].Progression(fProgression);
     }
 
     public void CashValue(int fCashValue)
     {
-        enemyPanel[enemyPanelControl].CashValue(fCashValue);
+        enemyPanel[slot].CashValue(fCashValue);
     }
 
-    public void Hider(bool fHider)
+    public void ShowSlot(int slot, bool show)
     {
-        enemyPanel[enemyPanelControl].Hider(fHider);
+        enemyPanel[slot].ShowPanel(show);
+    }
+
+
+
+    // NOTIFICATION
+    public void Notification(string application, string author, string message)
+    {
+        notification.NotificationMessage(application, author, message);
     }
 
     public void TakePhoneOut()

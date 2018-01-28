@@ -61,16 +61,8 @@ public class EnemyPanel : MonoBehaviour {
     public void Progression(int fProgression)
     {
         progression.value = fProgression;
-    }
 
-    public void CashValue(int fCashValue)
-    {
-        cashValue.text = "$" + fCashValue;
-    }
-
-    public void Hider(bool fHider)
-    {
-        if (fHider)
+        if (fProgression <= 0 || fProgression >= 100)
         {
             hider.color = Color.white;
         }
@@ -78,7 +70,22 @@ public class EnemyPanel : MonoBehaviour {
         {
             hider.color = Color.clear;
         }
-    } 
+    }
 
+    public void ShowPanel(bool show)
+    {
+        if (!show)
+        {
+            hider.color = Color.white;
+        }
+        else
+        {
+            hider.color = Color.clear;
+        }
+    }
 
+    public void CashValue(int fCashValue)
+    {
+        cashValue.text = "$" + fCashValue;
+    }
 }

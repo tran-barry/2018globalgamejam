@@ -238,20 +238,20 @@ public class Player : MonoBehaviour {
                         tempCardSlots[i].card.Collected = true;
                         justDrained = true;
                         m_stolenCash += tempCardSlots[i].card.Cash;
-                        GameManager.instance.UpdateMoney((int)m_stolenCash);
+                        GameManager.instance.UpdateCashCount((int)m_stolenCash);
                     }
-                    GameManager.instance.UpdatePhone(i, tempCardSlots[i].card.ID, tempCardSlots[i].percentComplete, fillRate, justDrained);
+                    GameManager.instance.HackCard(i, tempCardSlots[i].card.CardImage, (GameManager.HackStrength)(int)(4*tempCardSlots[i].percentComplete), (int)(100*fillRate));
                 }
                 else
                 {
                     //FILLED SLOT
-                    GameManager.instance.UpdatePhone(i, false);
+                    GameManager.instance.ShowSlot(i, true);
                 }
             }
             else
             {
                 //EMPTY SLOT
-                GameManager.instance.UpdatePhone(i, true);
+                GameManager.instance.ShowSlot(i, false);
             }
 
         }

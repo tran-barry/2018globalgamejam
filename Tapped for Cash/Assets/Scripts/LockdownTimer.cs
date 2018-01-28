@@ -10,7 +10,7 @@ public class LockdownTimer : MonoBehaviour
 
     private Text displayText;
     public float remainingTimeFloat;
-    private const int InitialTime = 10;
+    private const int InitialTime = 20;
     private const float PenaltyAmount = 1;
 
     private void Awake()
@@ -29,19 +29,17 @@ public class LockdownTimer : MonoBehaviour
         displayText = GetComponent<Text>();
     }
 
-    public void StartLockdown(GameManager.WTFVoice voice)
+    public void StartLockdown()
     {
         isEnabled = true;
         displayText.enabled = true;
         remainingTimeFloat = GetInitialTime();
-        SoundManager.instance.StartLockdownMusic(voice);
     }
 
     public void StopLockdown()
     {
         isEnabled = false;
         displayText.enabled = false;
-        SoundManager.instance.StopLockdownMusic();
     }
 
     public void ApplyPenalty()

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.Analytics;
 using UnityEngine.UI;
 
@@ -8,14 +9,19 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
     private bool lockDown = false;
-    private const float lockdownTimeSeconds = 10;
+    private const float lockdownTimeSeconds = 20;
     private GameState _gamestate;
-    private Phone phone;
+    public Phone phone;
 
     private float lockDownTimeRemaining;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject titleScreen;
     [SerializeField] private GameObject endScreen;
+
+    //phone test
+    public string application;
+    public string author;
+    public string message;
 
     public Text gameOverText;
     public Image gameOverScreen;
@@ -27,6 +33,14 @@ public class GameManager : MonoBehaviour {
         EuropeanExpress = 3,
         Vista = 4,
         PowerCard = 5
+    }
+
+    public enum HackStrength
+    {
+        None = 0,
+        Low = 1,
+        Medium = 2,
+        High = 3
     }
 
     enum GameState
@@ -91,9 +105,11 @@ public class GameManager : MonoBehaviour {
         ChangeState(GameState.StartScreen);
         phone = GameObject.Find("Phone").GetComponent<Phone>();
     }
-
+    
     void Update()
     {
+        Notification(application, author, message);
+
         if (_gamestate != GameState.Active)
         {
             return;
@@ -116,9 +132,9 @@ public class GameManager : MonoBehaviour {
         if(lockDown)
         {
             lockDownTimeRemaining -= Time.deltaTime;
-            if(lockDownTimeRemaining <= 0)
+            if(lockDownTimeRemaining < 0)
             {
-                GameOver();
+                EndGame(-1);
             }
         }
     }
@@ -148,20 +164,24 @@ public class GameManager : MonoBehaviour {
 
     public void Lockdown(WTFVoice voice)
     {
+        Debug.Log("Lockdown start");
         if(!lockDown)
         {
             phone.Safety(!lockDown);
             lockDown = true;
             lockDownTimeRemaining = lockdownTimeSeconds;
         }
-        LockdownTimer.instance.StartLockdown(voice);
-        // TODO: SoundManager.instance.ToggleLockdown(lockdownAudioClip);
+        LockdownTimer.instance.StartLockdown();
+        SoundManager.instance.StartLockdownMusic(voice);
     }
 
     public void LockdownEnd()
     {
+        Debug.Log("Lockdown End");
         phone.Safety(lockDown);
         lockDown = false;
+        LockdownTimer.instance.StopLockdown();
+        SoundManager.instance.StopLockdownMusic();
     }
 
     public void ApplyDetectPenaltyDuringLockdown()
@@ -201,20 +221,28 @@ public class GameManager : MonoBehaviour {
         ChangeState(GameState.Active);
     }
 
-    public void UpdateMoney(int cash)
+    public void UpdateCashCount(int total)
     {
-        //update UI cash value with new total
+        phone.Money(total);
     }
 
-    public void UpdatePhone(int slotID, int cardID, float percentComplete, float signalStrength, bool justDrained)
+    public void HackCard(int slot, CardImage card, HackStrength hack, int hackPercentage)
     {
-        //pass info to phone
+        // choice panel
+        phone.Slot(slot);
+
+        //panel
+        phone.Progression(hackPercentage);
     }
 
-
-    public void UpdatePhone(int slotID, bool isEmpty)
+    public void Notification(string fapplication, string fauthor, string fmessage)
     {
-        //update slot slotID as empty
+        phone.Notification(fapplication, fauthor, fmessage);
+    }
+
+    public void ShowSlot(int slotID, bool isEmpty)
+    {
+        phone.ShowSlot(slotID, isEmpty);
     }
 
 
@@ -223,6 +251,7 @@ public class GameManager : MonoBehaviour {
     {
         EndGame(phone.cashValue);
     }
+
     public void TakeOutPhone()
     {
         phone.showPhone = true;
