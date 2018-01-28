@@ -10,7 +10,9 @@ public class Notification : MonoBehaviour {
     private TextMeshProUGUI message;
     Vector2 basePosition;
     Vector2 position;
-    public bool goDown;
+    public bool goDown, goRight, timeCheck, start;
+    int speedDown, speedRight, reachScreen = 0, reachLeft = 0;
+    float timeLeft;
 
     // Use this for initialization
     void Start () {
@@ -18,14 +20,29 @@ public class Notification : MonoBehaviour {
         authorText = GameObject.Find("AuthorText").GetComponent<TextMeshProUGUI>();
         message = GameObject.Find("Message").GetComponent<TextMeshProUGUI>();
 
+        goRight = false;
+        timeCheck = false;
+        start = false;
+        goDown = false;
+
         basePosition = transform.position;
-        position.y = 200;
+        print(basePosition);
         transform.Translate(0, 200, 0);
+
+        speedDown = -10;
+        speedRight = 40;
     }
 
     private void Update()
     {
-        Movement(goDown);
+        if (start)
+        {
+            basePosition = transform.position;
+            print(basePosition);
+            start = false;
+        } 
+
+        Movement();
     }
 
     public void NotificationMessage(string fApplication, string fAuthor, string fMessage)
@@ -33,16 +50,47 @@ public class Notification : MonoBehaviour {
         application.text = fApplication;
         authorText.text = fAuthor;
         message.text = fMessage;
+        goDown = true;
+        start = true;
     }
 
-    void Movement(bool activate)
+    void Movement()
     {
-        int reachPosition;
-
-        if (activate)
+        if (goDown)
         {
-            transform.Translate(0, 1, 0);
+            transform.Translate(0, speedDown, 0);
+            reachScreen = reachScreen + speedDown;
+        }
+
+        if (reachScreen <= -200)
+        {
             goDown = false;
+
+            if (!timeCheck)
+            {
+                timeLeft = Time.time + 3;
+                timeCheck = true;
+            }
+
+            if (Time.time >= timeLeft)
+            {
+                
+                goRight = true;
+            }
+        }
+
+        if (goRight)
+        {
+            transform.Translate(speedRight, 0, 0);
+            reachLeft = speedRight + reachLeft;
+        }
+
+        if (transform.position.x >= basePosition.x + 500)
+        {
+            transform.position = basePosition;
+            goRight = false;
+            timeCheck = false;
+            reachScreen = 0;
         }
     }
 }
