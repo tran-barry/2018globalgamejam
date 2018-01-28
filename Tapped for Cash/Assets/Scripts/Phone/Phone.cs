@@ -22,7 +22,7 @@ public class Phone : MonoBehaviour {
 
 
     [Header("Carrier bar")]
-    public bool safety;
+    public bool safety = true;
     public int money = 0;
 
     [Header("Panel choice")]
