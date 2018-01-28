@@ -12,6 +12,8 @@ public class SoundManager : MonoBehaviour
 
     public AudioClip femaleWtf;
     public AudioClip maleWtf;
+    public AudioClip PhoneOnSound;
+    public AudioClip PhoneOffSound;
 
     public static SoundManager instance = null;
 
@@ -100,6 +102,18 @@ public class SoundManager : MonoBehaviour
         if (alarmSource.isPlaying)
         {
             alarmSource.Stop();
+        }
+    }
+
+    public void PlayPhoneSound(bool takingOut)
+    {
+        if (takingOut)
+        {
+            PlaySingle(PhoneOnSound);
+        }
+        else
+        {
+            PlaySingle(PhoneOffSound);
         }
     }
 }

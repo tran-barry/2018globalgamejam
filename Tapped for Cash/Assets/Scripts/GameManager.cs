@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Analytics;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
@@ -15,6 +16,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject titleScreen;
     [SerializeField] private GameObject endScreen;
+
+    public Text gameOverText;
+    public Image gameOverScreen;
 
     public enum CardImage
     {
@@ -169,7 +173,7 @@ public class GameManager : MonoBehaviour {
     public void EndGame(int cash)
     {
         ChangeState(GameState.EndScreen);
-        LockdownTimer.instance.StopLockdown();
+        LockdownEnd();
         if (cash == -1)
         {
             GameOver();
@@ -182,16 +186,33 @@ public class GameManager : MonoBehaviour {
 
     private void GameOver()
     {
-
+        gameOverText.text = "You Got Tapped!";
+        gameOverScreen.color = Color.red;
     }
 
     private void Win(int cash)
     {
-
+        gameOverText.text = "Tapped $" + cash + "!";
+        gameOverScreen.color = Color.blue;
     }
 
     public void StartGame()
     {
         ChangeState(GameState.Active);
+    }
+    public void PlayerHasExit()
+    {
+        EndGame(phone.cashValue);
+    }
+    public void TakeOutPhone()
+    {
+        phone.showPhone = true;
+        SoundManager.instance.PlayPhoneSound(true);
+    }
+
+    public void PutAwayPhone()
+    {
+        phone.showPhone = false;
+        SoundManager.instance.PlayPhoneSound(false);
     }
 }
