@@ -8,10 +8,10 @@ public class LockdownTimer : MonoBehaviour
 
     public static LockdownTimer instance = null;
 
-    private Text m_text;
-    private float m_leftTime;
-    private const int StartTime = 10;
-    private const float PenaltyAmount = 60f;
+    private Text displayText;
+    public float remainingTimeFloat;
+    private const int InitialTime = 10;
+    private const float PenaltyAmount = 1;
 
     private void Awake()
     {
@@ -26,25 +26,27 @@ public class LockdownTimer : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        m_text = GetComponent<Text>();
+        displayText = GetComponent<Text>();
     }
 
-    public void StartLockdown()
+    public void StartLockdown(bool isFemale)
     {
         isEnabled = true;
-        m_text.enabled = true;
-        m_leftTime = GetInitialTime();
+        displayText.enabled = true;
+        remainingTimeFloat = GetInitialTime();
+        SoundManager.instance.StartLockdownMusic(isFemale);
     }
 
     public void StopLockdown()
     {
         isEnabled = false;
-        m_text.enabled = false;
+        displayText.enabled = false;
+        SoundManager.instance.StopLockdownMusic();
     }
 
     public void ApplyPenalty()
     {
-        m_leftTime -= PenaltyAmount;
+        remainingTimeFloat -= PenaltyAmount;
     }
 
     private void Update()
@@ -54,37 +56,32 @@ public class LockdownTimer : MonoBehaviour
             return;
         }
 
-        if (m_leftTime > 0f)
+        if (remainingTimeFloat > 0f)
         {
             //  Update countdown clock
-            m_leftTime -= Time.deltaTime;
+            remainingTimeFloat -= Time.deltaTime;
             TimeLeft = GetLeftSeconds();
 
             //  Show current clock
-            if (m_leftTime > 0f)
+            if (remainingTimeFloat > 0f)
             {
-                m_text.text = TimeLeft.ToString("00");
+                displayText.text = TimeLeft.ToString("00");
             }
             else
             {
                 //  The countdown clock has finished
-                m_text.text = "00";
+                displayText.text = "00";
             }
-        }
-
-        if (m_leftTime <= 0f)
-        {
-            GameManager.instance.EndGame(-1);
         }
     }
 
     private float GetInitialTime()
     {
-        return StartTime * 60f;
+        return InitialTime;
     }
     
     private int GetLeftSeconds()
     {
-        return Mathf.FloorToInt(m_leftTime % 60f);
+        return (int) remainingTimeFloat;
     }
 }

@@ -7,11 +7,9 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
     private bool lockDown = false;
-    private const float lockdownTimeSeconds = 10;
     private GameState _gamestate;
     private Phone phone;
-
-    private float lockDownTimeRemaining;
+    
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject titleScreen;
     [SerializeField] private GameObject endScreen;
@@ -103,13 +101,14 @@ public class GameManager : MonoBehaviour {
             }
         }
 
-        if(lockDown)
+        if (Input.GetKeyUp(KeyCode.L))
         {
-            lockDownTimeRemaining -= Time.deltaTime;
-            if(lockDownTimeRemaining <= 0)
-            {
-                GameOver();
-            }
+            LockdownStart(false);
+        }
+
+        if(lockDown && LockdownTimer.instance.remainingTimeFloat <= 0f)
+        {
+            EndGame(-1);
         }
     }
 
@@ -146,28 +145,27 @@ public class GameManager : MonoBehaviour {
         return lockDown;
     }
 
-    public void Lockdown(AudioClip lockdownAudioClip)
+    public void LockdownStart(bool isFemale)
     {
         if(!lockDown)
         {
             phone.Safety(!lockDown);
             lockDown = true;
-            lockDownTimeRemaining = lockdownTimeSeconds;
+            LockdownTimer.instance.StartLockdown(isFemale);
         }
-        LockdownTimer.instance.StartLockdown();
-        SoundManager.instance.ToggleLockdown(lockdownAudioClip);
     }
 
     public void LockdownEnd()
     {
         phone.Safety(lockDown);
         lockDown = false;
+        LockdownTimer.instance.StopLockdown();
     }
 
     public void ApplyDetectPenaltyDuringLockdown()
     {
         if (lockDown)
-            lockDownTimeRemaining--;
+            LockdownTimer.instance.ApplyPenalty();
     }
 
     public void EndGame(int cash)
