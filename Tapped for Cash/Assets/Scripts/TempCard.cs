@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TempCard : MonoBehaviour {
-    enum Brand { PowerCard, EuroExpress, Explore, Vista, CentralOne}
-
     static int cardCount = 0;
     private int m_id;
     public int ID { get { return m_id; } }
+    private GameManager.CardImage cardImage = GameManager.CardImage.CentralOne;
+    public GameManager.CardImage CardImage { get { return cardImage; } }
     private string cardNumber = string.Empty;
     public string CardNumber { get { return cardNumber; } }
     private bool m_collected = false;

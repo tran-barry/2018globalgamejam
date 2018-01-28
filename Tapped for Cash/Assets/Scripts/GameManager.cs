@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour {
 
     public enum HackStrength
     {
+        None = 0,
         Low = 1,
         Medium = 2,
         High = 3
@@ -156,29 +157,6 @@ public class GameManager : MonoBehaviour {
         SoundManager.instance.ContinueMusic();
     }
 
-    public void UpdateCashCount(int total)
-    {
-        phone.Money(total);
-    }
-
-    public void HackCard(int slot, bool safety, int total, CardImage card, HackStrength hack, int hackPercentage)
-    {
-        // Carrier bar
-        phone.Safety(safety);
-        phone.Money(total);
-
-        // choice panel
-        phone.Slot(slot);
-
-        //panel
-        phone.Progression(hackPercentage);
-    }
-
-    public void Notification(string fapplication, string fauthor, string fmessage)
-    {
-        phone.Notification(fapplication, fauthor, fmessage);
-    }
-
     public bool isLockdown()
     {
         return lockDown;
@@ -243,20 +221,28 @@ public class GameManager : MonoBehaviour {
         ChangeState(GameState.Active);
     }
 
-    public void UpdateMoney(int cash)
+    public void UpdateCashCount(int total)
     {
-        //update UI cash value with new total
+        phone.Money(total);
     }
 
-    public void UpdatePhone(int slotID, int cardID, float percentComplete, float signalStrength, bool justDrained)
+    public void HackCard(int slot, CardImage card, HackStrength hack, int hackPercentage)
     {
-        //pass info to phone
+        // choice panel
+        phone.Slot(slot);
+
+        //panel
+        phone.Progression(hackPercentage);
     }
 
-
-    public void UpdatePhone(int slotID, bool isEmpty)
+    public void Notification(string fapplication, string fauthor, string fmessage)
     {
-        //update slot slotID as empty
+        phone.Notification(fapplication, fauthor, fmessage);
+    }
+
+    public void ShowSlot(int slotID, bool isEmpty)
+    {
+        phone.ShowSlot(slotID, isEmpty);
     }
 
 

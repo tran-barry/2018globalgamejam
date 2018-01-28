@@ -114,7 +114,10 @@ public class Phone : MonoBehaviour {
         enemyPanel[slot].CashValue(fCashValue);
     }
 
-
+    public void ShowSlot(int slot, bool show)
+    {
+        enemyPanel[slot].ShowPanel(show);
+    }
 
 
 
