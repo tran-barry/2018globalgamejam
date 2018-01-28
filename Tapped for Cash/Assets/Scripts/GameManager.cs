@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.Analytics;
 using UnityEngine.UI;
 
@@ -10,12 +11,17 @@ public class GameManager : MonoBehaviour {
     private bool lockDown = false;
     private const float lockdownTimeSeconds = 20;
     private GameState _gamestate;
-    private Phone phone;
+    public Phone phone;
 
     private float lockDownTimeRemaining;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject titleScreen;
     [SerializeField] private GameObject endScreen;
+
+    //phone test
+    public string application;
+    public string author;
+    public string message;
 
     public Text gameOverText;
     public Image gameOverScreen;
@@ -27,6 +33,13 @@ public class GameManager : MonoBehaviour {
         EuropeanExpress = 3,
         Vista = 4,
         PowerCard = 5
+    }
+
+    public enum HackStrength
+    {
+        Low = 1,
+        Medium = 2,
+        High = 3
     }
 
     enum GameState
@@ -94,6 +107,8 @@ public class GameManager : MonoBehaviour {
     
     void Update()
     {
+        Notification(application, author, message);
+
         if (_gamestate != GameState.Active)
         {
             return;
@@ -139,6 +154,29 @@ public class GameManager : MonoBehaviour {
 
         //enable the scripts again
         SoundManager.instance.ContinueMusic();
+    }
+
+    public void UpdateCashCount(int total)
+    {
+        phone.Money(total);
+    }
+
+    public void HackCard(int slot, bool safety, int total, CardImage card, HackStrength hack, int hackPercentage)
+    {
+        // Carrier bar
+        phone.Safety(safety);
+        phone.Money(total);
+
+        // choice panel
+        phone.Slot(slot);
+
+        //panel
+        phone.Progression(hackPercentage);
+    }
+
+    public void Notification(string fapplication, string fauthor, string fmessage)
+    {
+        phone.Notification(fapplication, fauthor, fmessage);
     }
 
     public bool isLockdown()
