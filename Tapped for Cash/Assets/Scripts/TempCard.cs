@@ -12,6 +12,9 @@ public class TempCard : MonoBehaviour {
     public string CardNumber { get { return cardNumber; } }
     private bool m_collected = false;
     public bool Collected { get { return m_collected; } set{ m_collected = value; } }
+    private int m_cash;
+    public int Cash { get { return m_cash; } }
+
 
 
 	// Use this for initialization

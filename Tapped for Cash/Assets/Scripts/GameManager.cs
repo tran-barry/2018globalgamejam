@@ -200,6 +200,25 @@ public class GameManager : MonoBehaviour {
     {
         ChangeState(GameState.Active);
     }
+
+    public void UpdateMoney(int cash)
+    {
+        //update UI cash value with new total
+    }
+
+    public void UpdatePhone(int slotID, int cardID, float percentComplete, float signalStrength, bool justDrained)
+    {
+        //pass info to phone
+    }
+
+
+    public void UpdatePhone(int slotID, bool isEmpty)
+    {
+        //update slot slotID as empty
+    }
+
+
+
     public void PlayerHasExit()
     {
         EndGame(phone.cashValue);
