@@ -910,7 +910,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 12.2
+  m_fontSize: 19.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1080,7 +1080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   safety: 0
   money: 0
-  enemyPanelControl: 0
+  slot: 0
   signal: 0
   progression: 0
   cashValue: 0
@@ -2305,7 +2305,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 12.45
+  m_fontSize: 19.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3743,7 +3743,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 11.45
+  m_fontSize: 16.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4562,10 +4562,14 @@ MonoBehaviour:
   scanSource: {fileID: 897664005}
   alarmSource: {fileID: 897664004}
   efxSource: {fileID: 897664003}
-  femaleWtf: {fileID: 0}
-  maleWtf: {fileID: 0}
-  PhoneOnSound: {fileID: 0}
-  PhoneOffSound: {fileID: 0}
+  femaleWtf1: {fileID: 8300000, guid: d0ecc280ebfbea34caa94c2cd3bcfeb7, type: 3}
+  femaleWtf2: {fileID: 8300000, guid: bc71ad74e4dbae84f987f6e6d36b2ed9, type: 3}
+  femaleWtf3: {fileID: 8300000, guid: 707982914252cc841ad8ffbb8af276dc, type: 3}
+  maleWtf1: {fileID: 8300000, guid: 4adfde706300c1941b24024f9d702b2a, type: 3}
+  maleWtf2: {fileID: 8300000, guid: f8c5a307f06d8d24bb5463eb41ce7f1c, type: 3}
+  maleWtf3: {fileID: 8300000, guid: 9b343b86aab005c47888cf213d444ec8, type: 3}
+  PhoneOnSound: {fileID: 8300000, guid: e66b32edfd8416c4e9dbc4acc2df4a98, type: 3}
+  PhoneOffSound: {fileID: 8300000, guid: 3161344aadbfa1c41bb1b39161ef1403, type: 3}
   lowPitchRange: 0.95
   highPitchRange: 1.05
 --- !u!82 &897664003
@@ -4657,7 +4661,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e3005921916c73447af19c544f61e96e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -5716,7 +5720,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 6
+  m_fontSize: 9.55
   m_fontSizeBase: 17.7
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7451,7 +7455,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 9.6
+  m_fontSize: 13.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8004,7 +8008,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 9.8
+  m_fontSize: 15.65
   m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8366,7 +8370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbee1a55c486f094fa65a59e584ac6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  authorText: {fileID: 0}
 --- !u!114 &1655685537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9117,7 +9120,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 13.85
+  m_fontSize: 19.5
   m_fontSizeBase: 1
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9521,7 +9524,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 12.4
+  m_fontSize: 19.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
