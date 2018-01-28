@@ -1584,7 +1584,6 @@ GameObject:
   m_Component:
   - component: {fileID: 207136737}
   - component: {fileID: 174470827}
-  - component: {fileID: 174470826}
   - component: {fileID: 174470825}
   m_Layer: 0
   m_Name: Customer5
@@ -1605,22 +1604,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd77fe17a18be5544b95a0858d115875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &174470826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114653799072070272, guid: 5addfe8aca2c552408f089f85e2e7bd0,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 174470824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 080cbc96a401b10479512f942e881c47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 5544 9358 9945 3552
-  card: 1
-  CashValue: 50
-  isDrained: 0
 --- !u!212 &174470827
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1676,7 +1659,6 @@ GameObject:
   m_Component:
   - component: {fileID: 488374951}
   - component: {fileID: 199287852}
-  - component: {fileID: 199287851}
   - component: {fileID: 199287850}
   m_Layer: 0
   m_Name: Customer3
@@ -1697,22 +1679,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd77fe17a18be5544b95a0858d115875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &199287851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114675568355079434, guid: 544feedf46836194ea30bd5ae6992fa7,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 199287849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 080cbc96a401b10479512f942e881c47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 5544 9358 9945 3552
-  card: 1
-  CashValue: 50
-  isDrained: 0
 --- !u!212 &199287852
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2606,7 +2572,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1542347575}
   - component: {fileID: 328663488}
-  - component: {fileID: 328663487}
   - component: {fileID: 328663486}
   m_Layer: 0
   m_Name: Customer4
@@ -2627,22 +2592,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd77fe17a18be5544b95a0858d115875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &328663487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114459002118883286, guid: 25dac14857ae05c44bd91b014d916a01,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 328663485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 080cbc96a401b10479512f942e881c47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 5544 9358 9945 3552
-  card: 1
-  CashValue: 50
-  isDrained: 0
 --- !u!212 &328663488
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5024,7 +4973,7 @@ GameObject:
   - component: {fileID: 709536461}
   - component: {fileID: 709536463}
   - component: {fileID: 709536462}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7998,6 +7947,7 @@ MonoBehaviour:
   progression: 0
   cashValue: 0
   hider: 0
+  startAnimation: 0
   showPhone: 0
 --- !u!222 &981549611
 CanvasRenderer:
@@ -8486,6 +8436,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goDown: 0
+  goRight: 0
+  timeCheck: 0
+  start: 0
 --- !u!114 &1071717766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9266,8 +9219,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1190235374}
   - component: {fileID: 1190235378}
-  - component: {fileID: 1190235377}
-  - component: {fileID: 1190235376}
   - component: {fileID: 1190235375}
   m_Layer: 0
   m_Name: Customer1
@@ -9289,7 +9240,6 @@ Transform:
   m_Children:
   - {fileID: 1916823442}
   - {fileID: 363351571}
-  - {fileID: 1328602765}
   m_Father: {fileID: 570878596}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9305,38 +9255,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd77fe17a18be5544b95a0858d115875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1190235376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114716715138337752, guid: 119ec4cba6be0324d9ce097b51b4476e,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1190235373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 080cbc96a401b10479512f942e881c47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 5361 7618 2001 5269
-  card: 2
-  CashValue: 50
-  isDrained: 0
---- !u!114 &1190235377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114448704498329306, guid: 119ec4cba6be0324d9ce097b51b4476e,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1190235373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 080cbc96a401b10479512f942e881c47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 5849 0838 0535 2414
-  card: 4
-  CashValue: 50
-  isDrained: 0
 --- !u!212 &1190235378
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10039,7 +9957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -10398,16 +10316,16 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1328602764}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
+  m_LocalPosition: {x: -6.92276, y: 1.5558238, z: 0}
+  m_LocalScale: {x: 0.50000024, y: 0.50000024, z: 0.5}
   m_Children:
   - {fileID: 713281733}
   - {fileID: 14369572}
   - {fileID: 692268009}
   - {fileID: 1085821883}
-  m_Father: {fileID: 1190235374}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1328602766
 MonoBehaviour:
@@ -13123,7 +13041,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1797793698}
   - component: {fileID: 1591943132}
-  - component: {fileID: 1591943131}
   - component: {fileID: 1591943130}
   m_Layer: 0
   m_Name: Customer2
@@ -13144,22 +13061,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd77fe17a18be5544b95a0858d115875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1591943131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114890016905171716, guid: 80891750305221a47bd2005f2bb7ba6c,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1591943129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 080cbc96a401b10479512f942e881c47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 5544 9358 9945 3552
-  card: 1
-  CashValue: 50
-  isDrained: 0
 --- !u!212 &1591943132
 SpriteRenderer:
   m_ObjectHideFlags: 0
