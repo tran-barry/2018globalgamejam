@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
     private bool lockDown = false;
     private const float lockdownTimeSeconds = 10;
     private GameState _gamestate;
+    private Phone phone;
 
     private float lockDownTimeRemaining;
     [SerializeField] private GameObject pausePanel;
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour {
     {
         _gamestate = new GameState();
         ChangeState(GameState.StartScreen);
+        phone = GameObject.Find("Phone").GetComponent<Phone>();
     }
 
     void Update()
@@ -127,9 +129,9 @@ public class GameManager : MonoBehaviour {
 
     public void Lockdown(AudioClip lockdownAudioClip)
     {
-        // Max put your logic here for the phone
         if(!lockDown)
         {
+            phone.Safety(!lockDown);
             lockDown = true;
             lockDownTimeRemaining = lockdownTimeSeconds;
         }
@@ -139,6 +141,7 @@ public class GameManager : MonoBehaviour {
 
     public void LockdownEnd()
     {
+        phone.Safety(lockDown);
         lockDown = false;
     }
 
