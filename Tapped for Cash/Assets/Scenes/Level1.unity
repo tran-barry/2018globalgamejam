@@ -2633,6 +2633,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 33398770886185782, guid: 5f699fd1fb70b2c4bb5367a24addb68d,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 33905469780407446, guid: 5f699fd1fb70b2c4bb5367a24addb68d,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 33938256101978602, guid: 5f699fd1fb70b2c4bb5367a24addb68d,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 33552736552969138, guid: 5f699fd1fb70b2c4bb5367a24addb68d,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f699fd1fb70b2c4bb5367a24addb68d, type: 2}
   m_IsPrefabParent: 0
@@ -3560,6 +3580,26 @@ Prefab:
     - target: {fileID: 4392242257203216, guid: cc8432636251dda46967b64e5de64a4a, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 33595399400817804, guid: cc8432636251dda46967b64e5de64a4a,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 33597478187902138, guid: cc8432636251dda46967b64e5de64a4a,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 33305942577936048, guid: cc8432636251dda46967b64e5de64a4a,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 33664382751562718, guid: cc8432636251dda46967b64e5de64a4a,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc8432636251dda46967b64e5de64a4a, type: 2}
@@ -4931,8 +4971,14 @@ MonoBehaviour:
   scanSource: {fileID: 1740381850}
   alarmSource: {fileID: 1740381849}
   efxSource: {fileID: 1740381853}
-  femaleWtf: {fileID: 0}
-  maleWtf: {fileID: 0}
+  femaleWtf1: {fileID: 8300000, guid: d0ecc280ebfbea34caa94c2cd3bcfeb7, type: 3}
+  femaleWtf2: {fileID: 8300000, guid: bc71ad74e4dbae84f987f6e6d36b2ed9, type: 3}
+  femaleWtf3: {fileID: 8300000, guid: 707982914252cc841ad8ffbb8af276dc, type: 3}
+  maleWtf1: {fileID: 8300000, guid: 4adfde706300c1941b24024f9d702b2a, type: 3}
+  maleWtf2: {fileID: 8300000, guid: f8c5a307f06d8d24bb5463eb41ce7f1c, type: 3}
+  maleWtf3: {fileID: 8300000, guid: 9b343b86aab005c47888cf213d444ec8, type: 3}
+  PhoneOnSound: {fileID: 8300000, guid: e66b32edfd8416c4e9dbc4acc2df4a98, type: 3}
+  PhoneOffSound: {fileID: 8300000, guid: 3161344aadbfa1c41bb1b39161ef1403, type: 3}
   lowPitchRange: 0.95
   highPitchRange: 1.05
 --- !u!82 &1740381849
@@ -4944,11 +4990,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e3005921916c73447af19c544f61e96e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -5002,7 +5048,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -5198,7 +5244,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -5706,6 +5752,7 @@ MonoBehaviour:
   progression: 0
   cashValue: 0
   hider: 0
+  showPhone: 0
 --- !u!222 &1873073219
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -64,8 +64,9 @@ public class Phone : MonoBehaviour {
         Money(money);
         Signal(signal);
         Progression(progression);
+        
         CashValue(cashValue);
-        Hider(hider);
+
         if (showPhone)
         {
             TakePhoneOut();
@@ -114,10 +115,13 @@ public class Phone : MonoBehaviour {
     }
 
 
+
+
+
     // NOTIFICATION
     public void Notification(string application, string author, string message)
     {
-        enemyPanel[enemyPanelControl].Hider(fHider);
+        notification.NotificationMessage(application, author, message);
     }
 
     public void TakePhoneOut()
