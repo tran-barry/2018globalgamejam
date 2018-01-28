@@ -18,6 +18,7 @@ public class Phone : MonoBehaviour {
     
     CarrierBar carrierBar;
     EnemyPanel[] enemyPanel = new EnemyPanel[3];
+    public Sprite[] creditCard;
     Notification notification;
 
 
@@ -86,6 +87,12 @@ public class Phone : MonoBehaviour {
     }
 
     // PANEL MODIFICATION
+
+
+    public void CreditCard(int slot, int cardSlot)
+    {
+        enemyPanel[slot].CreditCard(cardSlot);
+    }
 
     public void Signal(int slot, int fSignal)
     {

@@ -13,6 +13,8 @@ public class EnemyPanel : MonoBehaviour {
     TextMeshProUGUI cashValue;
     Image  hider;
 
+    public Phone phone;
+
     // Use this for initialization
     void Start ()
     {
@@ -25,9 +27,9 @@ public class EnemyPanel : MonoBehaviour {
         hider = transform.Find("Hider").GetComponent<Image>();
     }
 
-    public void CreditCard()
+    public void CreditCard(int cardSlot)
     {
-
+        creditCard.sprite = phone.creditCard[cardSlot];
     }
 
     public void Signal (int fSignal)
