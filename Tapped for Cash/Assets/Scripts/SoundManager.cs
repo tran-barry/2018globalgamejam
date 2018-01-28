@@ -10,8 +10,12 @@ public class SoundManager : MonoBehaviour
     public AudioSource alarmSource;
     public AudioSource efxSource;
 
-    public AudioClip femaleWtf;
-    public AudioClip maleWtf;
+    public AudioClip femaleWtf1;
+    public AudioClip femaleWtf2;
+    public AudioClip femaleWtf3;
+    public AudioClip maleWtf1;
+    public AudioClip maleWtf2;
+    public AudioClip maleWtf3;
     public AudioClip PhoneOnSound;
     public AudioClip PhoneOffSound;
 
@@ -38,7 +42,7 @@ public class SoundManager : MonoBehaviour
     {
         musicSource.volume = 1f;
         scanSource.volume = 1f;
-        alarmSource.volume = 0f;
+        alarmSource.volume = 1f;
         scanSource.mute = true;
     }
 
@@ -81,19 +85,20 @@ public class SoundManager : MonoBehaviour
     {
         if (!alarmSource.isPlaying)
         {
-            AudioClip clip;
+            AudioClip[] clips;
             if (voice == GameManager.WTFVoice.Female)
             {
-                clip = femaleWtf;
+                clips = new[] { femaleWtf1, femaleWtf2, femaleWtf3 };
             }
             else
             {
-                clip = maleWtf;
+                clips = new[] { maleWtf1, maleWtf2, maleWtf3 };
             }
 
-            var delay = (ulong)clip.length * 44100;
+            var clip = clips[Random.Range(0, 2)];
+            
             PlaySingle(clip);
-            alarmSource.Play(delay);
+            alarmSource.PlayDelayed(clip.length);
         }
     }
 

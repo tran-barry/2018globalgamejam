@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
     private bool lockDown = false;
-    private const float lockdownTimeSeconds = 10;
+    private const float lockdownTimeSeconds = 20;
     private GameState _gamestate;
     private Phone phone;
 
@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour {
         ChangeState(GameState.StartScreen);
         phone = GameObject.Find("Phone").GetComponent<Phone>();
     }
-
+    
     void Update()
     {
         if (_gamestate != GameState.Active)
@@ -116,9 +116,9 @@ public class GameManager : MonoBehaviour {
         if(lockDown)
         {
             lockDownTimeRemaining -= Time.deltaTime;
-            if(lockDownTimeRemaining <= 0)
+            if(lockDownTimeRemaining < 0)
             {
-                GameOver();
+                EndGame(-1);
             }
         }
     }
@@ -148,20 +148,24 @@ public class GameManager : MonoBehaviour {
 
     public void Lockdown(WTFVoice voice)
     {
+        Debug.Log("Lockdown start");
         if(!lockDown)
         {
             phone.Safety(!lockDown);
             lockDown = true;
             lockDownTimeRemaining = lockdownTimeSeconds;
         }
-        LockdownTimer.instance.StartLockdown(voice);
-        // TODO: SoundManager.instance.ToggleLockdown(lockdownAudioClip);
+        LockdownTimer.instance.StartLockdown();
+        SoundManager.instance.StartLockdownMusic(voice);
     }
 
     public void LockdownEnd()
     {
+        Debug.Log("Lockdown End");
         phone.Safety(lockDown);
         lockDown = false;
+        LockdownTimer.instance.StopLockdown();
+        SoundManager.instance.StopLockdownMusic();
     }
 
     public void ApplyDetectPenaltyDuringLockdown()
@@ -223,6 +227,7 @@ public class GameManager : MonoBehaviour {
     {
         EndGame(phone.cashValue);
     }
+
     public void TakeOutPhone()
     {
         phone.showPhone = true;
