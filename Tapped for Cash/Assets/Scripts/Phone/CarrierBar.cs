@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CarrierBar : MonoBehaviour
 {
-    Text safety;
-    Text money;
-
+    TextMeshProUGUI safety;
+    TextMeshProUGUI money;
+    
     // Use this for initialization
     void Start ()
     {
-        safety = GameObject.Find("SafeMessage").GetComponent<Text>();
-        money = GameObject.Find("Money").GetComponent<Text>();
+        safety = GameObject.Find("SafeMessage").GetComponent<TextMeshProUGUI>();
+        money = GameObject.Find("Money").GetComponent<TextMeshProUGUI>();
     }
 
     public void Safety (bool fSafety)

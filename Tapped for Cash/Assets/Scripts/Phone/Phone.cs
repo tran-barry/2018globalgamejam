@@ -15,17 +15,20 @@ using UnityEngine.UI;
  */
 
 public class Phone : MonoBehaviour {
-    [Header("Other")]
-    public CarrierBar carrierBar;
-    public EnemyPanel[] enemyPanel = new EnemyPanel[3];
+    
+    CarrierBar carrierBar;
+    EnemyPanel[] enemyPanel = new EnemyPanel[3];
     
 
-    [Header("Test Variable")]
+    [Header("Carrier bar")]
     public bool safety;
     public int money;
 
+    [Header("Panel choice")]
     [Range(0, 2)]
     public int enemyPanelControl;
+
+    [Header("Enemy panel")]
     [Range(0,3)]
     public int signal;
     [Range(0, 100)]
@@ -38,7 +41,7 @@ public class Phone : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        CarrierBar carrierBar = transform.GetComponent<CarrierBar>();
+        carrierBar = GameObject.Find("CarrierBar").GetComponent<CarrierBar>();
         enemyPanel[0] = GameObject.Find("EnemyPanel A").GetComponent<EnemyPanel>();
         enemyPanel[1] = GameObject.Find("EnemyPanel B").GetComponent<EnemyPanel>();
         enemyPanel[2] = GameObject.Find("EnemyPanel C").GetComponent<EnemyPanel>();
@@ -54,7 +57,7 @@ public class Phone : MonoBehaviour {
         CashValue(cashValue);
         Hider(hider);
 	}
-
+    
     void Safety(bool fSafety)
     {
         carrierBar.Safety(fSafety);
