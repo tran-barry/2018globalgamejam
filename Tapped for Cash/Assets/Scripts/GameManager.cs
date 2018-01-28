@@ -16,6 +16,15 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject titleScreen;
     [SerializeField] private GameObject endScreen;
 
+    public enum CardImage
+    {
+        CentralOne = 1,
+        Explorer = 2,
+        EuropeanExpress = 3,
+        Vista = 4,
+        PowerCard = 5
+    }
+
     enum GameState
     {
         StartScreen,
