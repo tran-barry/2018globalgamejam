@@ -247,7 +247,7 @@ public class GameManager : MonoBehaviour {
 
     public void PlayerHasExit()
     {
-        EndGame(phone.cashValue);
+        EndGame(phone.money);
     }
 
     public void TakeOutPhone()
