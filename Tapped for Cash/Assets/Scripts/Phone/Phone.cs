@@ -53,6 +53,11 @@ public class Phone : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (Time.timeScale == 0f)
+        {
+            return;
+        }
+
         Safety(safety);
         Money(money);
         Signal(signal);
