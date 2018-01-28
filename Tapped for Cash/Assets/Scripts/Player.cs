@@ -15,6 +15,10 @@ public class Player : MonoBehaviour {
     private Vector2 deltaPos = Vector2.zero;
     private float mRotation = 0f;
 
+    private float m_maxScanDistance = 1.3f;
+    private float m_maxDistValue = 0.3f;
+
+
 
     public CardSlot[] tempCardSlots = new CardSlot[3];
 
@@ -189,14 +193,60 @@ public class Player : MonoBehaviour {
 
     private void CheckAllSlots()
     {
+        //Remove any slots that have lost LOS
         for (int i = 0; i < 3; ++i)
         {
             if (tempCardSlots[i].slotFilled)
             {
-                Debug.Log(CheckLOS(transform.position, tempCardSlots[i].card.transform.position));
+                
+                if (!CheckLOS(transform.position, tempCardSlots[i].card.transform.position)){
+                    tempCardSlots[i].Remove();
+                }
             }
         }
+
+        //update remaining slots
+        for (int i = 0; i < 3; ++i)
+        {
+            if (tempCardSlots[i].slotFilled && !tempCardSlots[i].isDrained)
+            {
+                //calculate fill rate
+                float fillRate = Mathf.Lerp(1, m_maxDistValue, Vector2.Distance(tempCardSlots[i].card.gameObject.transform.position, gameObject.transform.position));
+                //update
+                tempCardSlots[i].percentComplete += fillRate;
+                if (tempCardSlots[i].percentComplete >= 100f)
+                {
+                    tempCardSlots[i].percentComplete = 100f;
+                    tempCardSlots[i].isDrained = true;
+                    tempCardSlots[i].card.Collected = true;
+                }
+                //Update UI
+            }
+
+        }
+
+        //Update Display
+        for (int i = 0; i < 3; ++i)
+        {
+            //GameManager.
+        }
     }
+
+    private float CalculateFillRate(CardSlot cardSlot)
+    {
+        float fillRate;
+        
+        //Offset Linear
+        fillRate = Mathf.Lerp(1, m_maxDistValue, Vector2.Distance(cardSlot.card.gameObject.transform.position, gameObject.transform.position));
+
+        //Inverse Square
+        float dist = Vector2.Distance(cardSlot.card.gameObject.transform.position, gameObject.transform.position);
+        dist = Mathf.Clamp(dist, 0.1f, m_maxScanDistance);
+        fillRate = ((m_maxScanDistance * m_maxScanDistance) / (dist * dist)) * m_maxDistValue;
+
+        return fillRate;
+    }
+
 
     
 
