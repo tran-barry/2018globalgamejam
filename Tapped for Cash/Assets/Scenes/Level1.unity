@@ -513,6 +513,7 @@ GameObject:
   - component: {fileID: 474817229}
   - component: {fileID: 474817228}
   - component: {fileID: 474817227}
+  - component: {fileID: 474817230}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -613,6 +614,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 474817225}
+--- !u!114 &474817230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 474817225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edadc5bbbc37d814484c686426dbc84f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yourButton: {fileID: 474817227}
 --- !u!1 &494290593
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,6 +637,7 @@ GameObject:
   - component: {fileID: 494290597}
   - component: {fileID: 494290596}
   - component: {fileID: 494290595}
+  - component: {fileID: 494290598}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -724,6 +738,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 494290593}
+--- !u!114 &494290598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 494290593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b87bcb86d9df0d34dba6c25fe460f222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yourButton: {fileID: 494290595}
 --- !u!1 &572814424
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,7 +1132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1341391530
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1209,7 +1235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2367a08f6b76fa9429bfe5f401befee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yourButton: {fileID: 0}
+  yourButton: {fileID: 1382579598}
 --- !u!114 &1382579598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1332,6 +1358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeLeft: 0
+  isEnabled: 0
 --- !u!114 &1517212582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1859,6 +1886,16 @@ Prefab:
       propertyPath: pausePanel
       value: 
       objectReference: {fileID: 1093302954}
+    - target: {fileID: 114401316721551006, guid: 8027596a77e3a6f449ff812082cbf910,
+        type: 2}
+      propertyPath: titleScreen
+      value: 
+      objectReference: {fileID: 276085592}
+    - target: {fileID: 114401316721551006, guid: 8027596a77e3a6f449ff812082cbf910,
+        type: 2}
+      propertyPath: endScreen
+      value: 
+      objectReference: {fileID: 1341391529}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8027596a77e3a6f449ff812082cbf910, type: 2}
   m_IsPrefabParent: 0
