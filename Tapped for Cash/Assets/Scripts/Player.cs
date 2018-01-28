@@ -16,7 +16,9 @@ public class Player : MonoBehaviour {
     private float mRotation = 0f;
 
     private float m_maxScanDistance = 1.3f;
-    private float m_maxDistValue = 0.3f;
+    private float m_maxDistValue = 0.5f;
+
+    private int m_stolenCash = 0;
 
 
 
@@ -212,19 +214,37 @@ public class Player : MonoBehaviour {
         //update remaining slots
         for (int i = 0; i < 3; ++i)
         {
-            if (tempCardSlots[i].slotFilled && !tempCardSlots[i].isDrained)
+            if (tempCardSlots[i].slotFilled)
             {
-                //calculate fill rate
-                float fillRate = Mathf.Lerp(1, m_maxDistValue, Vector2.Distance(tempCardSlots[i].card.gameObject.transform.position, gameObject.transform.position));
-                //update
-                tempCardSlots[i].percentComplete += fillRate;
-                if (tempCardSlots[i].percentComplete >= 100f)
+                if (!tempCardSlots[i].isDrained)
                 {
-                    tempCardSlots[i].percentComplete = 100f;
-                    tempCardSlots[i].isDrained = true;
-                    tempCardSlots[i].card.Collected = true;
+                    //ACTIVE SLOT
+                    //calculate fill rate
+                    float fillRate = Mathf.Lerp(1, m_maxDistValue, Vector2.Distance(tempCardSlots[i].card.gameObject.transform.position, gameObject.transform.position));
+                    //update
+                    tempCardSlots[i].percentComplete += fillRate;
+                    bool justDrained = false;
+                    if (tempCardSlots[i].percentComplete >= 100f)
+                    {
+                        tempCardSlots[i].percentComplete = 100f;
+                        tempCardSlots[i].isDrained = true;
+                        tempCardSlots[i].card.Collected = true;
+                        justDrained = true;
+                        m_stolenCash += tempCardSlots[i].card.Cash;
+                        GameManager.instance.UpdateMoney(m_stolenCash);
+                    }
+                    GameManager.instance.UpdatePhone(i, tempCardSlots[i].card.ID, tempCardSlots[i].percentComplete, fillRate, justDrained);
                 }
-                //Update UI
+                else
+                {
+                    //FILLED SLOT
+                    GameManager.instance.UpdatePhone(i, false);
+                }
+            }
+            else
+            {
+                //EMPTY SLOT
+                GameManager.instance.UpdatePhone(i, true);
             }
 
         }
@@ -232,7 +252,7 @@ public class Player : MonoBehaviour {
         //Update Display
         for (int i = 0; i < 3; ++i)
         {
-            //GameManager.
+            
         }
     }
 
