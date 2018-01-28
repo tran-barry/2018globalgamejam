@@ -10,12 +10,6 @@ public class SoundManager : MonoBehaviour
     public AudioSource alarmSource;
     public AudioSource efxSource;
 
-    public AudioClip alarmSound;
-    public AudioClip whatTheMaleSound;
-    public AudioClip whatTheFemaleSound;
-    public AudioClip phoneOn;
-    public AudioClip phoneOff;
-
     public static SoundManager instance = null;
 
     public float lowPitchRange = .95f;
@@ -35,6 +29,13 @@ public class SoundManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public void Init()
+    {
+        musicSource.volume = 1f;
+        scanSource.volume = 1f;
+        scanSource.mute = true;
+    }
+
     public void PlaySingle(AudioClip clip)
     {
         efxSource.clip = clip;
@@ -51,7 +52,7 @@ public class SoundManager : MonoBehaviour
         efxSource.Play();
     }
     
-	public void ToggleScan ()
+	public void ToggleScan()
 	{
 	    scanSource.mute = !scanSource.mute;
 	}
@@ -66,5 +67,19 @@ public class SoundManager : MonoBehaviour
     {
         musicSource.volume = 1f;
         scanSource.volume = 1f;
+    }
+
+    public void ToggleLockdown(AudioClip whatTheAudioClip)
+    {
+        if (!alarmSource.isPlaying)
+        {
+            var delay = (ulong) whatTheAudioClip.length * 44100;
+            PlaySingle(whatTheAudioClip);
+            alarmSource.Play(delay);
+        }
+        else
+        {
+            alarmSource.Stop();
+        }
     }
 }

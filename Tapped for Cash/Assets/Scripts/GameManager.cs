@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class GameManager : MonoBehaviour {
 
@@ -58,5 +59,40 @@ public class GameManager : MonoBehaviour {
         //enable the scripts again
         SoundManager.instance.ContinueMusic();
     }
-    
+
+    public void Lockdown(AudioClip lockdownAudioClip)
+    {
+        // Max put your logic here for the phone
+
+        LockdownTimer.instance.StartLockdown();
+        SoundManager.instance.ToggleLockdown(lockdownAudioClip);
+    }
+
+    public void ApplyDetectPenaltyDuringLockdown()
+    {
+
+    }
+
+    public void EndGame(int cash)
+    {
+        LockdownTimer.instance.StopLockdown();
+        if (cash == -1)
+        {
+            GameOver();
+        }
+        else
+        {
+            Win(cash);
+        }
+    }
+
+    private void GameOver()
+    {
+
+    }
+
+    private void Win(int cash)
+    {
+
+    }
 }
