@@ -35,8 +35,11 @@ public class Phone : MonoBehaviour {
     public int progression;
     public int cashValue;
     public bool hider;
-    
 
+    public bool showPhone;
+    private const float phoneSpeed = 10f;
+    private const float maxHeight = 0f;
+    private const float minHeight = -450f;
 
     // Use this for initialization
     void Start()
@@ -56,6 +59,14 @@ public class Phone : MonoBehaviour {
         Progression(progression);
         CashValue(cashValue);
         Hider(hider);
+        if (showPhone)
+        {
+            TakePhoneOut();
+        }
+        else
+        {
+            PutPhoneAway();
+        }
 	}
     
     public void Safety(bool fSafety)
@@ -87,5 +98,21 @@ public class Phone : MonoBehaviour {
     public void Hider(bool fHider)
     {
         enemyPanel[enemyPanelControl].Hider(fHider);
-    } 
+    }
+
+    public void TakePhoneOut()
+    {
+        if (gameObject.transform.localPosition.y < maxHeight)
+        {
+            gameObject.transform.Translate(0, phoneSpeed, 0);
+        }
+    }
+
+    public void PutPhoneAway()
+    {
+        if (gameObject.transform.localPosition.y > minHeight)
+        {
+            gameObject.transform.Translate(0, -phoneSpeed, 0);
+        }
+    }
 }
