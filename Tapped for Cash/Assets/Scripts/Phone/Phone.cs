@@ -66,7 +66,7 @@ public class Phone : MonoBehaviour {
     public void Money(int cashModif)
     {
 
-        carrierBar.Money(fMoney);
+        carrierBar.Money(cashModif);
     }
 
     public void Signal(int fSignal)

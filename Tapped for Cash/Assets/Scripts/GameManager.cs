@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour {
 
     public void UpdateCashCount(int total)
     {
-        phone
+        
     }
 
     public void hackCard(int slot, CardImage card, int hackStrenth, int hackPercentage)
