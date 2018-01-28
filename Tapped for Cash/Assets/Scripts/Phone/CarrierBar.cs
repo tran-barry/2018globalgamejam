@@ -17,12 +17,20 @@ public class CarrierBar : MonoBehaviour
 
     public void Safety (bool fSafety)
     {
-        if (fSafety) { safety.text = "Safe"; }
-        else { safety.text = "Run!"; } 
+        if (fSafety)
+        {
+            safety.text = "Safe";
+            safety.color = Color.white;
+        }
+        else
+        {
+            safety.text = "Run!";
+            safety.color = Color.red;
+        } 
     }
 
     public void Money (int fMoney)
     {
         money.text = "$" + fMoney;
-    }
+    } 
 }

@@ -31,6 +31,7 @@ public class Phone : MonoBehaviour {
     [Range(0, 100)]
     public int progression;
     public int cashValue;
+    public bool hider;
     
 
 
@@ -51,6 +52,7 @@ public class Phone : MonoBehaviour {
         Signal(signal);
         Progression(progression);
         CashValue(cashValue);
+        Hider(hider);
 	}
 
     void Safety(bool fSafety)
@@ -77,4 +79,9 @@ public class Phone : MonoBehaviour {
     {
         enemyPanel[enemyPanelControl].CashValue(fCashValue);
     }
+
+    void Hider(bool fHider)
+    {
+        enemyPanel[enemyPanelControl].Hider(fHider);
+    } 
 }
