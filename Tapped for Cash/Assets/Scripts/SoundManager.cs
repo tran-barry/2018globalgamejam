@@ -10,6 +10,9 @@ public class SoundManager : MonoBehaviour
     public AudioSource alarmSource;
     public AudioSource efxSource;
 
+    public AudioClip femaleWtf;
+    public AudioClip maleWtf;
+
     public static SoundManager instance = null;
 
     public float lowPitchRange = .95f;
@@ -33,6 +36,7 @@ public class SoundManager : MonoBehaviour
     {
         musicSource.volume = 1f;
         scanSource.volume = 1f;
+        alarmSource.volume = 0f;
         scanSource.mute = true;
     }
 
@@ -61,23 +65,39 @@ public class SoundManager : MonoBehaviour
     {
         musicSource.volume = 0.2f;
         scanSource.volume = 0f;
+        alarmSource.volume = 0f;
     }
 
     public void ContinueMusic()
     {
         musicSource.volume = 1f;
         scanSource.volume = 1f;
+        alarmSource.volume = 1f;
     }
 
-    public void ToggleLockdown(AudioClip whatTheAudioClip)
+    public void StartLockdownMusic(bool isFemale)
     {
         if (!alarmSource.isPlaying)
         {
-            var delay = (ulong) whatTheAudioClip.length * 44100;
-            PlaySingle(whatTheAudioClip);
+            AudioClip clip;
+            if (isFemale)
+            {
+                clip = femaleWtf;
+            }
+            else
+            {
+                clip = maleWtf;
+            }
+
+            var delay = (ulong)clip.length * 44100;
+            PlaySingle(clip);
             alarmSource.Play(delay);
         }
-        else
+    }
+
+    public void StopLockdownMusic()
+    {
+        if (alarmSource.isPlaying)
         {
             alarmSource.Stop();
         }
