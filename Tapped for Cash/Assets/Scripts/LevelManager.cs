@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        
+        InitializeCards();
 		
 	}
 	
@@ -38,6 +38,7 @@ public class LevelManager : MonoBehaviour {
         float perWeight = levelCurrency / totalWeight;
 
         List<string> uniqueCard4Digits = new List<string>(cardCount);
+
         for (int i = 0; i < cardCount; ++i)
         {
             string random4Digits = Random.Range(0, 10) + "" +Random.Range(0, 10) + "" + Random.Range(0, 10) + "" + Random.Range(0, 10);
@@ -47,13 +48,14 @@ public class LevelManager : MonoBehaviour {
             }
             else
             {
-                uniqueCard4Digits[i] = random4Digits;
+                uniqueCard4Digits.Add(random4Digits);
             }
         }
 
         for (int i = 0; i < cardCount; ++i)
         {
             cardObjects[i].GetComponent<TempCard>().InitializeCard(uniqueCard4Digits[i], randomWeights[i]*perWeight, Random.Range(1,6));
+            Debug.Log(uniqueCard4Digits + ": $" + randomWeights[i] * perWeight);
         }
 
 
