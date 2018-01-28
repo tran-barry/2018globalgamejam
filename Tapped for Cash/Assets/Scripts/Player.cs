@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
     private Rigidbody2D mRigidBody2D;
+    private Animator mAnimator;
     private GameObject scanner;
     private float m_scanMoveMultiplier = 0.5f;
     private float m_moveSpeed = 2f;
     private float m_maxSpeed = 1.5f;
     private float rotateSpeed = 3f;
     private bool isScanning = false;
-    int playerLayer = (~(1 << 8));
+    int playerLayer = (~((1 << 8) + (1 << 2)));
 
     private Vector2 deltaPos = Vector2.zero;
     private float mRotation = 0f;
@@ -19,7 +20,7 @@ public class Player : MonoBehaviour {
     private float m_maxDistValue = 0.5f;
     private float m_baseFillTime = 20f; //  20%/second
 
-    private int m_stolenCash = 0;
+    private float m_stolenCash = 0;
     float runBoost = 1.0f;
 
     public CardSlot[] tempCardSlots = new CardSlot[3];
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour {
         mRigidBody2D = GetComponent<Rigidbody2D>();
         scanner = transform.Find("Dude_scanning").gameObject;
         scanner.SetActive(false);
+        mAnimator = GetComponentInChildren<Animator>();
     }
 
     void Start () {
@@ -52,12 +54,14 @@ public class Player : MonoBehaviour {
             if(isScanning)
             {
                 isScanning = false;
+                mAnimator.SetTrigger("HidePhone");
                 GameManager.instance.PutAwayPhone();
             }
             else
             {
                 isScanning = true;
                 GameManager.instance.TakeOutPhone();
+                mAnimator.SetTrigger("TakeOutPhone");
             }
             scanner.SetActive(isScanning);
         }
@@ -92,6 +96,9 @@ public class Player : MonoBehaviour {
         {
             deltaPos.y -= m_moveSpeed * runBoost * 0.5f * (isScanning ? m_scanMoveMultiplier : 1f);
         }
+
+        //Update animation
+        if (deltaPos == Vector2.zero && mRotation == 0) { mAnimator.SetTrigger("Stop"); } else { mAnimator.SetTrigger("Move"); }
 
 
         CheckAllSlots();
@@ -238,9 +245,9 @@ public class Player : MonoBehaviour {
                         tempCardSlots[i].card.Collected = true;
                         justDrained = true;
                         m_stolenCash += tempCardSlots[i].card.Cash;
-                        GameManager.instance.UpdateCashCount(m_stolenCash);
+                        GameManager.instance.UpdateCashCount((int)m_stolenCash);
                     }
-                    GameManager.instance.HackCard(i, tempCardSlots[i].card.CardImage, tempCardSlots[i].card.Cash, (GameManager.HackStrength)(int)(4*tempCardSlots[i].percentComplete), (int)(100*fillRate));
+                    GameManager.instance.HackCard(i, tempCardSlots[i].card.CardImage, (int)tempCardSlots[i].card.Cash, (GameManager.HackStrength)(int)(4*tempCardSlots[i].percentComplete), (int)(100*fillRate));
                 }
                 else
                 {
