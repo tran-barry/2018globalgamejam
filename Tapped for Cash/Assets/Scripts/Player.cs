@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     private float m_maxSpeed = 1.5f;
     private float rotateSpeed = 3f;
     private bool isScanning = false;
-    int playerLayer = (~(1 << 8));
+    int playerLayer = (~((1 << 8) + (1 << 2)));
 
     private Vector2 deltaPos = Vector2.zero;
     private float mRotation = 0f;
@@ -19,7 +19,7 @@ public class Player : MonoBehaviour {
     private float m_maxDistValue = 0.5f;
     private float m_baseFillTime = 20f; //  20%/second
 
-    private int m_stolenCash = 0;
+    private float m_stolenCash = 0;
     float runBoost = 1.0f;
 
     public CardSlot[] tempCardSlots = new CardSlot[3];
@@ -238,7 +238,7 @@ public class Player : MonoBehaviour {
                         tempCardSlots[i].card.Collected = true;
                         justDrained = true;
                         m_stolenCash += tempCardSlots[i].card.Cash;
-                        GameManager.instance.UpdateMoney(m_stolenCash);
+                        GameManager.instance.UpdateMoney((int)m_stolenCash);
                     }
                     GameManager.instance.UpdatePhone(i, tempCardSlots[i].card.ID, tempCardSlots[i].percentComplete, fillRate, justDrained);
                 }

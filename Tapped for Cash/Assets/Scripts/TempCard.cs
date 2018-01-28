@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TempCard : MonoBehaviour {
-    enum Brand { PowerCard, EuroExpress, Explore, Vista, CentralOne}
+    public enum Brand { PowerCard, EuroExpress, Explore, Vista, CentralOne }
 
     static int cardCount = 0;
     private int m_id;
@@ -11,15 +11,17 @@ public class TempCard : MonoBehaviour {
     private string cardNumber = string.Empty;
     public string CardNumber { get { return cardNumber; } }
     private bool m_collected = false;
-    public bool Collected { get { return m_collected; } set{ m_collected = value; } }
-    private int m_cash;
-    public int Cash { get { return m_cash; } }
+    public bool Collected { get { return m_collected; } set { m_collected = value; } }
+    private float m_cash;
+    public float Cash { get { return m_cash; } }
+    private Brand m_brand = Brand.PowerCard;
+    public Brand CardBrand { get { return m_brand; } }
 
 
 
 	// Use this for initialization
 	void Start () {
-        InitializeCard("1234");
+        //InitializeCard("1234");
         Debug.Log(cardNumber);
 	}
 	
@@ -29,18 +31,13 @@ public class TempCard : MonoBehaviour {
 	}
 
     //functionality goes elsewhere eventually
-    private void InitializeCard(string finalFourDigits)
+    public void InitializeCard(string finalFourDigits, float cash,int brandID)
     {
         m_id = cardCount;
         ++cardCount;
-        for (int i = 0; i < 3; ++i)
-        {
-            for (int j = 0; j < 4; ++j)
-            {
-                cardNumber += "" + Random.Range(0, 10);
-            }
-            cardNumber += " ";
-        }
-        cardNumber += finalFourDigits;
+        
+        cardNumber = "**** **** **** " + finalFourDigits;
+        m_cash = cash;
+        m_brand = (Brand)brandID;
     }
 }
