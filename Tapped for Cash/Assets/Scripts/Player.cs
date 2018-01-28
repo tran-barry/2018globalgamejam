@@ -247,7 +247,7 @@ public class Player : MonoBehaviour {
                         m_stolenCash += tempCardSlots[i].card.Cash;
                         GameManager.instance.UpdateCashCount((int)m_stolenCash);
                     }
-                    GameManager.instance.HackCard(i, tempCardSlots[i].card.CardImage, (GameManager.HackStrength)(int)(4*tempCardSlots[i].percentComplete), (int)(100*fillRate));
+                    GameManager.instance.HackCard(i, tempCardSlots[i].card.CardImage, tempCardSlots[i].card.Cash, (GameManager.HackStrength)(int)(4*tempCardSlots[i].percentComplete), (int)(100*fillRate));
                 }
                 else
                 {

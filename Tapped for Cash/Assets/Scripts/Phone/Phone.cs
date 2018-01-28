@@ -25,10 +25,6 @@ public class Phone : MonoBehaviour {
     public bool safety;
     public int money = 0;
 
-    [Header("Panel choice")]
-    [Range(0, 2)]
-    public int slot;
-
     [Header("Enemy panel")]
     [Range(0,3)]
     public int signal;
@@ -62,10 +58,6 @@ public class Phone : MonoBehaviour {
 
         Safety(safety);
         Money(money);
-        Signal(signal);
-        Progression(progression);
-        
-        CashValue(cashValue);
 
         if (showPhone)
         {
@@ -90,26 +82,19 @@ public class Phone : MonoBehaviour {
         carrierBar.Money(fMoney);
     }
 
-
-    // ENEMY PANEL SELECTION
-    public void Slot(int enemyControl)
-    {
-        slot = enemyControl;
-    }
-
-
     // PANEL MODIFICATION
-    public void Signal(int fSignal)
+
+    public void Signal(int slot, int fSignal)
     {
         enemyPanel[slot].Signal(fSignal);
     }
 
-    public void Progression(int fProgression)
+    public void Progression(int slot, int fProgression)
     {
         enemyPanel[slot].Progression(fProgression);
     }
 
-    public void CashValue(int fCashValue)
+    public void CashValue(int slot, int fCashValue)
     {
         enemyPanel[slot].CashValue(fCashValue);
     }

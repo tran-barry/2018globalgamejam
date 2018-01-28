@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 114562148016079352}
   - component: {fileID: 114546974586001416}
   m_Layer: 0
-  m_Name: Dude_v3
+  m_Name: Staff2-Template
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
