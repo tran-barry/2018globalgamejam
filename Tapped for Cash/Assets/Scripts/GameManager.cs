@@ -6,7 +6,49 @@ using UnityEngine.Analytics;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
+    private GameState _gamestate;
+
     [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject titleScreen;
+    [SerializeField] private GameObject endScreen;
+    [SerializeField] private LockdownTimer lockdownTimer;
+
+    enum GameState
+    {
+        StartScreen,
+        Active,
+        EndScreen
+    }
+
+    private void ChangeState(GameState gamestate)
+    {
+        _gamestate = gamestate;
+        switch (gamestate)
+        {
+            case GameState.StartScreen:
+                Time.timeScale = 0f;
+                pausePanel.SetActive(false);
+                titleScreen.SetActive(true);
+                endScreen.SetActive(false);
+                SoundManager.instance.Init();
+                return;
+            case GameState.Active:
+                Time.timeScale = 1f;
+                pausePanel.SetActive(false);
+                titleScreen.SetActive(false);
+                endScreen.SetActive(false);
+                SoundManager.instance.Init();
+                return;
+            case GameState.EndScreen:
+                Time.timeScale = 0f;
+                pausePanel.SetActive(false);
+                titleScreen.SetActive(false);
+                endScreen.SetActive(true);
+                SoundManager.instance.Init();
+                return;
+        }
+        
+    }
 
     void Awake()
     {
@@ -24,11 +66,17 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
-        pausePanel.SetActive(false);
+        _gamestate = new GameState();
+        RestartGame();
     }
 
     void Update()
     {
+        if (_gamestate != GameState.Active)
+        {
+            return;
+        }
+
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             if (!pausePanel.activeInHierarchy)
@@ -43,6 +91,7 @@ public class GameManager : MonoBehaviour {
             }
         }
     }
+
     private void PauseGame()
     {
         Time.timeScale = 0;
@@ -51,6 +100,7 @@ public class GameManager : MonoBehaviour {
         //Disable scripts that still work while timescale is set to 0
         SoundManager.instance.PauseMusic();
     }
+
     private void ContinueGame()
     {
         Time.timeScale = 1;
@@ -75,6 +125,7 @@ public class GameManager : MonoBehaviour {
 
     public void EndGame(int cash)
     {
+        ChangeState(GameState.EndScreen);
         LockdownTimer.instance.StopLockdown();
         if (cash == -1)
         {
@@ -94,5 +145,15 @@ public class GameManager : MonoBehaviour {
     private void Win(int cash)
     {
 
+    }
+
+    public void RestartGame()
+    {
+        ChangeState(GameState.StartScreen);
+    }
+
+    public void StartGame()
+    {
+        ChangeState(GameState.Active);
     }
 }

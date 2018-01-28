@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class LockdownTimer : MonoBehaviour
 {
     public int TimeLeft = 0;
+    public bool isEnabled = false;
 
     public static LockdownTimer instance = null;
 
@@ -30,12 +31,14 @@ public class LockdownTimer : MonoBehaviour
 
     public void StartLockdown()
     {
+        isEnabled = true;
         m_text.enabled = true;
         m_leftTime = GetInitialTime();
     }
 
     public void StopLockdown()
     {
+        isEnabled = false;
         m_text.enabled = false;
     }
 
@@ -46,6 +49,11 @@ public class LockdownTimer : MonoBehaviour
 
     private void Update()
     {
+        if (!isEnabled)
+        {
+            return;
+        }
+
         if (m_leftTime > 0f)
         {
             //  Update countdown clock
@@ -64,7 +72,7 @@ public class LockdownTimer : MonoBehaviour
             }
         }
 
-        if (m_leftTime > 0f && m_text.enabled)
+        if (m_leftTime <= 0f)
         {
             GameManager.instance.EndGame(-1);
         }
