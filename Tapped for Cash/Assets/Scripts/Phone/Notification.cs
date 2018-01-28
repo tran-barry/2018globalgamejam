@@ -5,15 +5,23 @@ using UnityEngine.UI;
 using TMPro;
 
 public class Notification : MonoBehaviour {
-    public TextMeshProUGUI authorText;
+    private TextMeshProUGUI application;
+    private TextMeshProUGUI authorText;
+    private TextMeshProUGUI message;
+    private bool getTime;
+    private float time;
 
     // Use this for initialization
     void Start () {
+        application = GameObject.Find("TitleText").GetComponent<TextMeshProUGUI>();
         authorText = GameObject.Find("AuthorText").GetComponent<TextMeshProUGUI>();
+        message = GameObject.Find("Message").GetComponent<TextMeshProUGUI>();
     }
-	
-	// Update is called once per frame
-	void Update () {
-        authorText.text = "test";
-	}
+
+    public void NotificationMessage(string fApplication, string fAuthor, string fMessage)
+    {
+        application.text = fApplication;
+        authorText.text = fAuthor;
+        message.text = fMessage;
+    }
 }
