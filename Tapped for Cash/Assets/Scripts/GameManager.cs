@@ -8,10 +8,20 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
     private bool lockDown = false;
     private GameState _gamestate;
+    private Phone phone;
     
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject titleScreen;
     [SerializeField] private GameObject endScreen;
+
+    public enum CardImage
+    {
+        CentralOne = 1,
+        Explorer = 2,
+        EuropeanExpress = 3,
+        Vista = 4,
+        PowerCard = 5
+    }
 
     enum GameState
     {
@@ -67,6 +77,7 @@ public class GameManager : MonoBehaviour {
     {
         _gamestate = new GameState();
         ChangeState(GameState.StartScreen);
+        phone = GameObject.Find("Phone").GetComponent<Phone>();
     }
 
     void Update()
@@ -119,6 +130,16 @@ public class GameManager : MonoBehaviour {
         SoundManager.instance.ContinueMusic();
     }
 
+    public void UpdateCashCount(int total)
+    {
+        
+    }
+
+    public void hackCard(int slot, CardImage card, int hackStrenth, int hackPercentage)
+    {
+        // max
+    }
+
     public bool isLockdown()
     {
         return lockDown;
@@ -126,9 +147,9 @@ public class GameManager : MonoBehaviour {
 
     public void LockdownStart(bool isFemale)
     {
-        // Max put your logic here for the phone
         if(!lockDown)
         {
+            phone.Safety(!lockDown);
             lockDown = true;
             LockdownTimer.instance.StartLockdown(isFemale);
         }
@@ -136,6 +157,7 @@ public class GameManager : MonoBehaviour {
 
     public void LockdownEnd()
     {
+        phone.Safety(lockDown);
         lockDown = false;
         LockdownTimer.instance.StopLockdown();
     }
@@ -174,4 +196,6 @@ public class GameManager : MonoBehaviour {
     {
         ChangeState(GameState.Active);
     }
+
+
 }

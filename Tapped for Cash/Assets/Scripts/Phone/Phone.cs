@@ -22,7 +22,7 @@ public class Phone : MonoBehaviour {
 
     [Header("Carrier bar")]
     public bool safety;
-    public int money;
+    public int money = 0;
 
     [Header("Panel choice")]
     [Range(0, 2)]
@@ -58,32 +58,33 @@ public class Phone : MonoBehaviour {
         Hider(hider);
 	}
     
-    void Safety(bool fSafety)
+    public void Safety(bool fSafety)
     {
         carrierBar.Safety(fSafety);
     }
 
-    void Money(int fMoney)
+    public void Money(int cashModif)
     {
-        carrierBar.Money(fMoney);
+
+        carrierBar.Money(cashModif);
     }
 
-    void Signal(int fSignal)
+    public void Signal(int fSignal)
     {
         enemyPanel[enemyPanelControl].Signal(fSignal);
     }
 
-    void Progression(int fProgression)
+    public void Progression(int fProgression)
     {
         enemyPanel[enemyPanelControl].Progression(fProgression);
     }
 
-    void CashValue(int fCashValue)
+    public void CashValue(int fCashValue)
     {
         enemyPanel[enemyPanelControl].CashValue(fCashValue);
     }
 
-    void Hider(bool fHider)
+    public void Hider(bool fHider)
     {
         enemyPanel[enemyPanelControl].Hider(fHider);
     } 
