@@ -18,6 +18,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip maleWtf3;
     public AudioClip PhoneOnSound;
     public AudioClip PhoneOffSound;
+    public AudioClip cashSound;
 
     public static SoundManager instance = null;
 
@@ -52,13 +53,12 @@ public class SoundManager : MonoBehaviour
         efxSource.Play();
     }
 
-    public void RandomizeSfx(params AudioClip[] clips)
+    public void PlaySingleRandomPitch(AudioClip clip)
     {
-        int randomIndex = Random.Range(0, clips.Length);
         float randomPitch = Random.Range(lowPitchRange, highPitchRange);
 
+        efxSource.clip = clip;
         efxSource.pitch = randomPitch;
-        efxSource.clip = clips[randomIndex];
         efxSource.Play();
     }
     
@@ -120,5 +120,10 @@ public class SoundManager : MonoBehaviour
         {
             PlaySingle(PhoneOffSound);
         }
+    }
+
+    public void PlayCashSound()
+    {
+        PlaySingleRandomPitch(cashSound);
     }
 }
