@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class EnemyPanel : MonoBehaviour {
     Image  creditCard;
@@ -9,7 +10,7 @@ public class EnemyPanel : MonoBehaviour {
     Image  signalMedium;
     Image  signalHigh;
     Slider progression;
-    Text   cashValue;
+    TextMeshProUGUI cashValue;
     Image  hider;
 
     // Use this for initialization
@@ -20,8 +21,13 @@ public class EnemyPanel : MonoBehaviour {
         signalMedium = transform.Find("Signal/Medium").GetComponent<Image>();
         signalHigh = transform.Find("Signal/High").GetComponent<Image>();
         progression = transform.Find("Progression").GetComponent<Slider>();
-        cashValue = transform.Find("CashValue").GetComponent<Text>();
+        cashValue = transform.Find("CashValue").GetComponent<TextMeshProUGUI>();
         hider = transform.Find("Hider").GetComponent<Image>();
+    }
+
+    public void CreditCard()
+    {
+
     }
 
     public void Signal (int fSignal)
@@ -73,4 +79,6 @@ public class EnemyPanel : MonoBehaviour {
             hider.color = Color.clear;
         }
     } 
+
+
 }
