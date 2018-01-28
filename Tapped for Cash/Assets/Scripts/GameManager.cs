@@ -6,8 +6,11 @@ using UnityEngine.Analytics;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
+    private bool lockDown = false;
+    private const float lockdownTimeSeconds = 10;
     private GameState _gamestate;
 
+    private float lockDownTimeRemaining;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject titleScreen;
     [SerializeField] private GameObject endScreen;
@@ -90,6 +93,15 @@ public class GameManager : MonoBehaviour {
                 ContinueGame();
             }
         }
+
+        if(lockDown)
+        {
+            lockDownTimeRemaining -= Time.deltaTime;
+            if(lockDownTimeRemaining <= 0)
+            {
+                GameOver();
+            }
+        }
     }
 
     private void PauseGame()
@@ -110,17 +122,32 @@ public class GameManager : MonoBehaviour {
         SoundManager.instance.ContinueMusic();
     }
 
+    public bool isLockdown()
+    {
+        return lockDown;
+    }
+
     public void Lockdown(AudioClip lockdownAudioClip)
     {
         // Max put your logic here for the phone
-
+        if(!lockDown)
+        {
+            lockDown = true;
+            lockDownTimeRemaining = lockdownTimeSeconds;
+        }
         LockdownTimer.instance.StartLockdown();
         SoundManager.instance.ToggleLockdown(lockdownAudioClip);
     }
 
+    public void LockdownEnd()
+    {
+        lockDown = false;
+    }
+
     public void ApplyDetectPenaltyDuringLockdown()
     {
-
+        if (lockDown)
+            lockDownTimeRemaining--;
     }
 
     public void EndGame(int cash)
