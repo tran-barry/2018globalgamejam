@@ -209,6 +209,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b11738500486d7d45a1ca3680246f9f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tempCardSlots:
+  - card: {fileID: 0}
+    slotFilled: 0
+    percentComplete: 0
+    isDrained: 0
+  - card: {fileID: 0}
+    slotFilled: 0
+    percentComplete: 0
+    isDrained: 0
+  - card: {fileID: 0}
+    slotFilled: 0
+    percentComplete: 0
+    isDrained: 0
+  PhoneOnSound: {fileID: 0}
+  PhoneOffSound: {fileID: 0}
 --- !u!212 &212355572675625216
 SpriteRenderer:
   m_ObjectHideFlags: 1

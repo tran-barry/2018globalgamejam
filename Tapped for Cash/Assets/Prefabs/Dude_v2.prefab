@@ -20,6 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4345473483706454}
   - component: {fileID: 212048937032998472}
+  - component: {fileID: 114162251113259636}
+  - component: {fileID: 114311622633743210}
+  - component: {fileID: 114487583760947904}
   m_Layer: 0
   m_Name: Dude_v2
   m_TagString: Untagged
@@ -36,7 +39,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4520423250972430}
   - component: {fileID: 70587398879613696}
-  - component: {fileID: 114070311209408800}
+  - component: {fileID: 114294960541214870}
   m_Layer: 0
   m_Name: Detection
   m_TagString: Untagged
@@ -141,12 +144,53 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.3}
   m_Size: {x: 1.6, y: 1.28}
   m_Direction: 0
---- !u!114 &114070311209408800
+--- !u!114 &114162251113259636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1557418387644804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 080cbc96a401b10479512f942e881c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 8712 1258 1232 4123
+  card: 2
+  CashValue: 50
+  isDrained: 0
+--- !u!114 &114294960541214870
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1984847271930750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5f5bac2c3f551644a4188970c0af9ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114311622633743210
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1557418387644804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 080cbc96a401b10479512f942e881c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 9121 2419 4129 1456
+  card: 5
+  CashValue: 50
+  isDrained: 0
+--- !u!114 &114487583760947904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1557418387644804}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd77fe17a18be5544b95a0858d115875, type: 3}
