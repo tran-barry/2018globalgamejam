@@ -109,8 +109,6 @@ public class GameManager : MonoBehaviour {
     
     void Update()
     {
-        //phone testing
-        Notification(application, author, message);
 
         if (_gamestate != GameState.Active)
         {

@@ -33,6 +33,9 @@ public class Phone : MonoBehaviour {
     public int cashValue;
     public bool hider;
 
+    [Header("notification")]
+    public bool startAnimation = false;
+
     public bool showPhone;
     private const float phoneSpeed = 10f;
     private const float maxHeight = 0f;
@@ -118,6 +121,7 @@ public class Phone : MonoBehaviour {
         {
             gameObject.transform.Translate(0, phoneSpeed, 0);
         }
+
     }
 
     public void PutPhoneAway()
