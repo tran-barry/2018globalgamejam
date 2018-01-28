@@ -8,8 +8,7 @@ public class DoorToExit : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            //GTFO
-
+            GameManager.instance.PlayerHasExit();
         }
     }
 
