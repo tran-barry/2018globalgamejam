@@ -97,8 +97,7 @@ public class GameManager : MonoBehaviour {
 
     void Update()
     {
-        //just for test
-        phone.Notification(application, author, message);
+        Notification(application, author, message);
 
         if (_gamestate != GameState.Active)
         {
@@ -167,7 +166,7 @@ public class GameManager : MonoBehaviour {
 
     public void Notification(string fapplication, string fauthor, string fmessage)
     {
-        
+        phone.Notification(fapplication, fauthor, fmessage);
     }
 
     public bool isLockdown()
