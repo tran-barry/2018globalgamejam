@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4392242257203216}
   - component: {fileID: 212382880315631202}
+  - component: {fileID: 114562148016079352}
+  - component: {fileID: 114546974586001416}
   m_Layer: 0
   m_Name: Dude_v3
   m_TagString: Untagged
@@ -52,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4716026673022136}
   - component: {fileID: 70549791454429936}
-  - component: {fileID: 114772938337664874}
+  - component: {fileID: 114293837647664270}
   m_Layer: 0
   m_Name: Detection
   m_TagString: Untagged
@@ -141,7 +143,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.3}
   m_Size: {x: 1.6, y: 1.28}
   m_Direction: 0
---- !u!114 &114772938337664874
+--- !u!114 &114293837647664270
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -149,9 +151,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 1965066915661154}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5f5bac2c3f551644a4188970c0af9ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114546974586001416
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1384818371285110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd77fe17a18be5544b95a0858d115875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114562148016079352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1384818371285110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 080cbc96a401b10479512f942e881c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 5491 1212 1211 2131
+  card: 4
+  CashValue: 50
+  isDrained: 0
 --- !u!212 &212382880315631202
 SpriteRenderer:
   m_ObjectHideFlags: 1
