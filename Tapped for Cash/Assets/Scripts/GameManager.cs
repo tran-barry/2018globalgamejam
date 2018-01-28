@@ -256,11 +256,17 @@ public class GameManager : MonoBehaviour {
     {
         phone.showPhone = true;
         SoundManager.instance.PlayPhoneSound(true);
+
+        //TODO hook this up to actual scanning, not just taking phone out
+        SoundManager.instance.ToggleScan();
     }
 
     public void PutAwayPhone()
     {
         phone.showPhone = false;
         SoundManager.instance.PlayPhoneSound(false);
+
+        //TODO hook this up to actual scanning, not just taking phone out
+        SoundManager.instance.ToggleScan();
     }
 }
