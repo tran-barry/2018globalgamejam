@@ -132,7 +132,7 @@ public class Player : MonoBehaviour {
         //Debug.Log("player trigger");
         if (other.name == "BasicPlayer")
         {
-            Player playa = other.GetComponent<Player>();
+            //Player playa = other.GetComponent<Player>();
             //Debug.Log("Player overlap start");
 
         }

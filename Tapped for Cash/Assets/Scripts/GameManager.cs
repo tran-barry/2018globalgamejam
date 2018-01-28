@@ -7,9 +7,11 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
     private bool lockDown = false;
+    private const float lockdownTimeSeconds = 10;
     private GameState _gamestate;
     private Phone phone;
-    
+
+    private float lockDownTimeRemaining;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject titleScreen;
     [SerializeField] private GameObject endScreen;
@@ -28,6 +30,12 @@ public class GameManager : MonoBehaviour {
         StartScreen,
         Active,
         EndScreen
+    }
+
+    public enum WTFVoice
+    {
+        Male,
+        Female
     }
 
     private void ChangeState(GameState gamestate)
@@ -101,14 +109,13 @@ public class GameManager : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.L))
+        if(lockDown)
         {
-            LockdownStart(false);
-        }
-
-        if(lockDown && LockdownTimer.instance.remainingTimeFloat <= 0f)
-        {
-            EndGame(-1);
+            lockDownTimeRemaining -= Time.deltaTime;
+            if(lockDownTimeRemaining <= 0)
+            {
+                GameOver();
+            }
         }
     }
 
@@ -130,42 +137,33 @@ public class GameManager : MonoBehaviour {
         SoundManager.instance.ContinueMusic();
     }
 
-    public void UpdateCashCount(int total)
-    {
-        
-    }
-
-    public void hackCard(int slot, CardImage card, int hackStrenth, int hackPercentage)
-    {
-        // max
-    }
-
     public bool isLockdown()
     {
         return lockDown;
     }
 
-    public void LockdownStart(bool isFemale)
+    public void Lockdown(WTFVoice voice)
     {
         if(!lockDown)
         {
             phone.Safety(!lockDown);
             lockDown = true;
-            LockdownTimer.instance.StartLockdown(isFemale);
+            lockDownTimeRemaining = lockdownTimeSeconds;
         }
+        LockdownTimer.instance.StartLockdown(voice);
+        // TODO: SoundManager.instance.ToggleLockdown(lockdownAudioClip);
     }
 
     public void LockdownEnd()
     {
         phone.Safety(lockDown);
         lockDown = false;
-        LockdownTimer.instance.StopLockdown();
     }
 
     public void ApplyDetectPenaltyDuringLockdown()
     {
         if (lockDown)
-            LockdownTimer.instance.ApplyPenalty();
+            lockDownTimeRemaining--;
     }
 
     public void EndGame(int cash)
@@ -196,6 +194,4 @@ public class GameManager : MonoBehaviour {
     {
         ChangeState(GameState.Active);
     }
-
-
 }
