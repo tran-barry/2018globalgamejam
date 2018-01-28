@@ -4,116 +4,103 @@ using UnityEngine;
 
 public class Dude_Detection : MonoBehaviour {
 
-    MonoBehaviour dude;
+    const int LockdownTimeSeconds = 10;
+    const int suspicionTimeInterval = 1;
 
-	// Use this for initialization
-	void Start () {
-        dude = this.GetComponentInParent<Dude>();	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    int suspicionLevel = 0; // 1-3 = # of exclamation marks, 4 = WTF (too late), 5 = penalty
 
+    float startSuspicion = 0.0f;
+
+    GameObject A1;
+    GameObject A2;
+    GameObject A3;
+    GameObject WTF;
+
+    // Use this for initialization
+    void Start()
+    {
+        A1 = transform.Find("A1").gameObject;
+        A2 = transform.Find("A2").gameObject;
+        A3 = transform.Find("A3").gameObject;
+        WTF = transform.Find("WTF").gameObject;
+        UpdateSuspicion(true);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    // Update is called once per frame
+    //void Update () {
+
+    //}
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        // GLTODO: Call whatever UI starts the scanning process (OnTriggerStay2D does the actual scoring
+        if (GameManager.instance.isLockdown())
+        {
+            GameManager.instance.ApplyDetectPenaltyDuringLockdown();
+            return;
+        }
+        startSuspicion = 0.0f;
+        suspicionLevel = 0;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (startSuspicion < 4 && suspicionLevel < 4)
+        {
+            startSuspicion = 0.0f;
+            suspicionLevel = 0;
+            UpdateSuspicion(true);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //Debug.Log("dude trigger: " + collision.name);
-        if (collision.name == "BasicPlayer")
-        {
-            //Debug.Log("playa");
-            Player playa = collision.GetComponent<Player>();
-            if (playa.IsScanning())
-            {
-                float dist = Vector3.Distance(this.transform.position, collision.transform.position);
-                //float maxdistance = this.transform.
-                //Debug.Log("Player overlap start: " + dist.ToString());
-                CalculateDistanceAsRatio2D(this.transform, playa.transform);
-                CalculateDistanceAsRatio3D(this.transform, playa.transform);
-            }
-
-        }
+        float currentSuspicion = startSuspicion;
+        startSuspicion += Time.deltaTime;
+        //Debug.Log("sus: " + startSuspicion.ToString());
+        if ((int)startSuspicion > (int)currentSuspicion) // Went over an integer boundary
+            UpdateSuspicion(false);
     }
 
-    private float CalculateDistanceAsRatio2D(Transform obj1, Transform obj2)
+    private void UpdateSuspicion(bool clear)
     {
-        float centerDiff = 0.0f; // difference between the centers
-        float colliderDiff = 0.0f; // difference between the collider edges
-
-        float rayDist1 = 0.0f;
-        float rayDist2 = 0.0f;
-        RaycastHit2D rayHit;
-
-        Vector3 drawlineOffset = new Vector3(0, 0.02f, 0); // for the drawlines to not render over each other
-
-        centerDiff = (obj2.position - obj1.position).magnitude; // distance between 2 objects
-
-        rayHit = Physics2D.Raycast(obj1.position, Vector3.zero - (obj1.position - obj2.position).normalized);
-        if (rayHit.collider != null)
+        if(clear)
         {
-            Debug.DrawLine(obj1.position, rayHit.point, Color.red);
-            rayDist1 = rayHit.distance; //Vector2.Distance(rayHit.point, obj1.position);
+            A1.SetActive(false);
+            A2.SetActive(false);
+            A3.SetActive(false);
+            WTF.SetActive(false);
         }
-
-        rayHit = Physics2D.Raycast(obj2.position, Vector3.zero - (obj2.position - obj1.position).normalized);
-        if (rayHit.collider != null)
+        if (startSuspicion >= 5)
         {
-            Debug.DrawLine(obj2.position + drawlineOffset, rayHit.point + (Vector2)drawlineOffset, Color.green); // offset so line can be seen
-            rayDist2 = Vector2.Distance(rayHit.point, obj2.position);
+            suspicionLevel = 5;
+            return;
         }
-
-        float centerDiffRayDist1 = (centerDiff - rayDist1);
-        float centerDiffRayDist2 = (centerDiff - rayDist2);
-
-        colliderDiff = centerDiff - (centerDiff - rayDist1) - (centerDiff - rayDist2); // colliderDiff - (collider2 radius) - (collider1 radius)
-
-        float ratio = (colliderDiff / centerDiff);
-        Debug.Log("colliderDiff2D: " + colliderDiff.ToString() + ", centerDiff: " + centerDiff.ToString() + ", ratio: " + ratio.ToString() + ", centerDiffRayDist1: " + centerDiffRayDist1.ToString() + ", " + centerDiffRayDist2.ToString());
-
-        return ratio;
-    }
-
-    private float CalculateDistanceAsRatio3D(Transform obj1, Transform obj2)
-    {
-        float centerDiff = 0.0f; // difference between the centers
-        float colliderDiff = 0.0f; // difference between the collider edges
-
-        float rayDist1 = 0.0f;
-        float rayDist2 = 0.0f;
-        RaycastHit rayHit;
-
-        Vector3 drawlineOffset = new Vector3(0, 0.02f, 0); // for the drawlines to not render over each other
-
-        centerDiff = (obj2.position - obj1.position).magnitude; // distance between 2 objects
-
-        Physics.Raycast(obj1.position, Vector3.zero - (obj1.position - obj2.position).normalized, out rayHit);
-        if (rayHit.collider != null)
+        else if (startSuspicion >= 4)
         {
-            Debug.DrawLine(obj1.position, rayHit.point, Color.red);
-            rayDist1 = Vector2.Distance(rayHit.point, obj1.position);
+            suspicionLevel = 4;
+            A1.SetActive(false);
+            A2.SetActive(false);
+            A3.SetActive(false);
+            WTF.SetActive(true);
+            GameManager.instance.Lockdown(GameManager.WTFVoice.Male);
         }
-
-        Physics.Raycast(obj2.position, Vector3.zero - (obj2.position - obj1.position).normalized, out rayHit);
-        if (rayHit.collider != null)
+        else if (startSuspicion >= 3)
         {
-            Debug.DrawLine(obj2.position + drawlineOffset, rayHit.point + drawlineOffset, Color.green); // offset so line can be seen
-            rayDist2 = Vector2.Distance(rayHit.point, obj2.position);
+            Debug.Log("syslevel: 3");
+            suspicionLevel = 3;
+            A3.SetActive(true);
         }
-
-        float centerDiffRayDist1 = (centerDiff - rayDist1);
-        float centerDiffRayDist2 = (centerDiff - rayDist2);
-
-        colliderDiff = centerDiff - (centerDiff - rayDist1) - (centerDiff - rayDist2); // colliderDiff - (collider2 radius) - (collider1 radius)
-
-        float ratio = (colliderDiff / centerDiff);
-        Debug.Log("3D: " + obj1.position + " ," + obj2.position);
-        Debug.Log("colliderDiff3D: " + colliderDiff.ToString() + ", centerDiff: " + centerDiff.ToString() + ", ratio: " + ratio.ToString() + ", centerDiffRayDist1: " + centerDiffRayDist1.ToString() + ", " + centerDiffRayDist2.ToString());
-
-        return ratio;
+        else if (startSuspicion >= 2)
+        {
+            Debug.Log("syslevel: 2");
+            suspicionLevel = 2;
+            A2.SetActive(true);
+        }
+        else if (startSuspicion >= 1)
+        {
+            Debug.Log("syslevel: 1");
+            suspicionLevel = 1;
+            A1.SetActive(true);
+        }
     }
 }

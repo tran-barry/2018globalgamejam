@@ -9,17 +9,33 @@ public class GameManager : MonoBehaviour {
     private bool lockDown = false;
     private const float lockdownTimeSeconds = 10;
     private GameState _gamestate;
+    private Phone phone;
 
     private float lockDownTimeRemaining;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject titleScreen;
     [SerializeField] private GameObject endScreen;
 
+    public enum CardImage
+    {
+        CentralOne = 1,
+        Explorer = 2,
+        EuropeanExpress = 3,
+        Vista = 4,
+        PowerCard = 5
+    }
+
     enum GameState
     {
         StartScreen,
         Active,
         EndScreen
+    }
+
+    public enum WTFVoice
+    {
+        Male,
+        Female
     }
 
     private void ChangeState(GameState gamestate)
@@ -69,6 +85,7 @@ public class GameManager : MonoBehaviour {
     {
         _gamestate = new GameState();
         ChangeState(GameState.StartScreen);
+        phone = GameObject.Find("Phone").GetComponent<Phone>();
     }
 
     void Update()
@@ -125,20 +142,21 @@ public class GameManager : MonoBehaviour {
         return lockDown;
     }
 
-    public void Lockdown(AudioClip lockdownAudioClip)
+    public void Lockdown(WTFVoice voice)
     {
-        // Max put your logic here for the phone
         if(!lockDown)
         {
+            phone.Safety(!lockDown);
             lockDown = true;
             lockDownTimeRemaining = lockdownTimeSeconds;
         }
-        LockdownTimer.instance.StartLockdown();
-        SoundManager.instance.ToggleLockdown(lockdownAudioClip);
+        LockdownTimer.instance.StartLockdown(voice);
+        // TODO: SoundManager.instance.ToggleLockdown(lockdownAudioClip);
     }
 
     public void LockdownEnd()
     {
+        phone.Safety(lockDown);
         lockDown = false;
     }
 
