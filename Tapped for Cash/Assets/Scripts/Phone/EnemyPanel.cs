@@ -60,15 +60,18 @@ public class EnemyPanel : MonoBehaviour {
 
     public void Progression(int fProgression)
     {
+        print(fProgression);
         progression.value = fProgression;
 
         if (fProgression <= 0 || fProgression >= 100)
         {
             hider.color = Color.white;
+            print("white");
         }
         else
         {
             hider.color = Color.clear;
+            print("clear");
         }
     }
 

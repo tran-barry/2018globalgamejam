@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour {
     
     void Update()
     {
+        //phone testing
         Notification(application, author, message);
 
         if (_gamestate != GameState.Active)
@@ -227,13 +228,11 @@ public class GameManager : MonoBehaviour {
         SoundManager.instance.PlayCashSound();
     }
 
-    public void HackCard(int slot, CardImage card, HackStrength hack, int hackPercentage)
+    public void HackCard(int slot, CardImage card, int cashValue, HackStrength hack, int hackPercentage)
     {
-        // choice panel
-        phone.Slot(slot);
-
-        //panel
-        phone.Progression(hackPercentage);
+        phone.Signal(slot, (int)hack);
+        phone.Progression(slot, hackPercentage);
+        phone.CashValue(slot, cashValue);
     }
 
     public void Notification(string fapplication, string fauthor, string fmessage)
@@ -245,8 +244,6 @@ public class GameManager : MonoBehaviour {
     {
         phone.ShowSlot(slotID, isEmpty);
     }
-
-
 
     public void PlayerHasExit()
     {
