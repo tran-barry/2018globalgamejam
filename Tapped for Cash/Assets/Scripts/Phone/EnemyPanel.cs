@@ -10,6 +10,7 @@ public class EnemyPanel : MonoBehaviour {
     Image  signalHigh;
     Slider progression;
     Text   cashValue;
+    Image  hider;
 
     // Use this for initialization
     void Start ()
@@ -20,6 +21,7 @@ public class EnemyPanel : MonoBehaviour {
         signalHigh = transform.Find("Signal/High").GetComponent<Image>();
         progression = transform.Find("Progression").GetComponent<Slider>();
         cashValue = transform.Find("CashValue").GetComponent<Text>();
+        hider = transform.Find("Hider").GetComponent<Image>();
     }
 
     public void Signal (int fSignal)
@@ -58,5 +60,17 @@ public class EnemyPanel : MonoBehaviour {
     public void CashValue(int fCashValue)
     {
         cashValue.text = "$" + fCashValue;
+    }
+
+    public void Hider(bool fHider)
+    {
+        if (fHider)
+        {
+            hider.color = Color.white;
+        }
+        else
+        {
+            hider.color = Color.clear;
+        }
     }
 }
