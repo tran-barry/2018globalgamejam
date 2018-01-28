@@ -36,7 +36,7 @@ public class Phone : MonoBehaviour {
     [Header("notification")]
     public bool startAnimation = false;
 
-    public bool showPhone;
+    public bool showPhone, phoneUp;
     private const float phoneSpeed = 10f;
     private const float maxHeight = 0f;
     private const float minHeight = -450f;
@@ -112,7 +112,10 @@ public class Phone : MonoBehaviour {
     // NOTIFICATION
     public void Notification(string application, string author, string message)
     {
-        notification.NotificationMessage(application, author, message);
+        if (phoneUp)
+        {
+            notification.NotificationMessage(application, author, message);
+        }
     }
 
     public void TakePhoneOut()
@@ -121,7 +124,7 @@ public class Phone : MonoBehaviour {
         {
             gameObject.transform.Translate(0, phoneSpeed, 0);
         }
-
+        phoneUp = true;
     }
 
     public void PutPhoneAway()
@@ -130,5 +133,6 @@ public class Phone : MonoBehaviour {
         {
             gameObject.transform.Translate(0, -phoneSpeed, 0);
         }
+        phoneUp = false;
     }
 }
