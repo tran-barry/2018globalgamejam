@@ -199,4 +199,4 @@ public class GameManager : MonoBehaviour {
     {
         //update slot slotID as empty
     }
-}}
+}
