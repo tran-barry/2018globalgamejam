@@ -131,6 +131,16 @@ public class GameManager : MonoBehaviour {
         SoundManager.instance.ContinueMusic();
     }
 
+    public void UpdateCashCount(int total)
+    {
+        phone
+    }
+
+    public void hackCard(int slot, CardImage card, int hackStrenth, int hackPercentage)
+    {
+        // max
+    }
+
     public bool isLockdown()
     {
         return lockDown;
@@ -188,4 +198,6 @@ public class GameManager : MonoBehaviour {
     {
         ChangeState(GameState.Active);
     }
+
+
 }

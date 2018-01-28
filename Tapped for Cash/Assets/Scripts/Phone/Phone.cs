@@ -22,7 +22,7 @@ public class Phone : MonoBehaviour {
 
     [Header("Carrier bar")]
     public bool safety;
-    public int money;
+    public int money = 0;
 
     [Header("Panel choice")]
     [Range(0, 2)]
@@ -63,8 +63,9 @@ public class Phone : MonoBehaviour {
         carrierBar.Safety(fSafety);
     }
 
-    public void Money(int fMoney)
+    public void Money(int cashModif)
     {
+
         carrierBar.Money(fMoney);
     }
 
