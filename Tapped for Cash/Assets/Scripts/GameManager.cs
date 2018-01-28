@@ -224,6 +224,7 @@ public class GameManager : MonoBehaviour {
     public void UpdateCashCount(int total)
     {
         phone.Money(total);
+        SoundManager.instance.PlayCashSound();
     }
 
     public void HackCard(int slot, CardImage card, HackStrength hack, int hackPercentage)
