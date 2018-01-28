@@ -15,7 +15,8 @@ using UnityEngine.UI;
  */
 
 public class Phone : MonoBehaviour {
-    
+
+    public Image[] phoneImages;
     CarrierBar carrierBar;
     EnemyPanel[] enemyPanel = new EnemyPanel[3];
     Notification notification;
@@ -90,6 +91,11 @@ public class Phone : MonoBehaviour {
     public void Signal(int slot, int fSignal)
     {
         enemyPanel[slot].Signal(fSignal);
+    }
+
+    public void CardBrand(int slot, GameManager.CardImage crd)
+    {
+        enemyPanel[slot].creditCard = phoneImages[(int)crd];
     }
 
     public void Progression(int slot, int fProgression)

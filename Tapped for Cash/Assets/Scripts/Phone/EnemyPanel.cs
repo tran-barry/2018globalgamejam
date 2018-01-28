@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 public class EnemyPanel : MonoBehaviour {
-    Image  creditCard;
+    public Image creditCard;
     Image  signalLow;
     Image  signalMedium;
     Image  signalHigh;

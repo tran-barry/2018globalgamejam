@@ -1862,7 +1862,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 2
 --- !u!212 &208002849
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3271,7 +3271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6314,7 +6314,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 2
 --- !u!212 &817323507
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7001,6 +7001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a656a9afa53e54d8b64a0fe2d8d535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  creditCard: {fileID: 0}
 --- !u!114 &909740947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7712,6 +7713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a656a9afa53e54d8b64a0fe2d8d535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  creditCard: {fileID: 0}
 --- !u!114 &974250074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7941,6 +7943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360b5763e7cfe9d418e0a5f1451110a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  phoneImages: []
   safety: 0
   money: 0
   signal: 0
@@ -8826,7 +8829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -10105,6 +10108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a656a9afa53e54d8b64a0fe2d8d535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  creditCard: {fileID: 0}
 --- !u!114 &1300026737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15414,7 +15418,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 2
 --- !u!212 &1885746890
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15712,7 +15716,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 2
 --- !u!212 &1944506451
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16129,7 +16133,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 2
 --- !u!212 &1972803362
 SpriteRenderer:
   m_ObjectHideFlags: 0

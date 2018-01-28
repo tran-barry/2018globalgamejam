@@ -212,7 +212,7 @@ public class GameManager : MonoBehaviour {
 
     private void Win(int cash)
     {
-        gameOverText.text = "Tapped $" + cash + "!";
+        gameOverText.text = "Tapped $" + cash + " (out of $3000)!";
         gameOverScreen.color = Color.blue;
     }
 
@@ -223,7 +223,7 @@ public class GameManager : MonoBehaviour {
 
     public void UpdateCashCount(int total)
     {
-        phone.Money(total);
+        phone.money = total;
         SoundManager.instance.PlayCashSound();
     }
 
@@ -232,6 +232,7 @@ public class GameManager : MonoBehaviour {
         phone.Signal(slot, (int)hack);
         phone.Progression(slot, hackPercentage);
         phone.CashValue(slot, cashValue);
+        
     }
 
     public void Notification(string fapplication, string fauthor, string fmessage)
