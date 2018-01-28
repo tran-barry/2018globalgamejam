@@ -29,12 +29,12 @@ public class LockdownTimer : MonoBehaviour
         displayText = GetComponent<Text>();
     }
 
-    public void StartLockdown(bool isFemale)
+    public void StartLockdown(GameManager.WTFVoice voice)
     {
         isEnabled = true;
         displayText.enabled = true;
         remainingTimeFloat = GetInitialTime();
-        SoundManager.instance.StartLockdownMusic(isFemale);
+        SoundManager.instance.StartLockdownMusic(voice);
     }
 
     public void StopLockdown()

@@ -77,12 +77,12 @@ public class SoundManager : MonoBehaviour
         alarmSource.volume = 1f;
     }
 
-    public void StartLockdownMusic(bool isFemale)
+    public void StartLockdownMusic(GameManager.WTFVoice voice)
     {
         if (!alarmSource.isPlaying)
         {
             AudioClip clip;
-            if (isFemale)
+            if (voice == GameManager.WTFVoice.Female)
             {
                 clip = femaleWtf;
             }
