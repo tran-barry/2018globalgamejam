@@ -200,6 +200,7 @@ public class GameManager : MonoBehaviour {
     {
         ChangeState(GameState.Active);
     }
+<<<<<<< working copy
 
     public void UpdateMoney(int cash)
     {
@@ -215,10 +216,7 @@ public class GameManager : MonoBehaviour {
     public void UpdatePhone(int slotID, bool isEmpty)
     {
         //update slot slotID as empty
-    }
-
-
-
+=======
     public void PlayerHasExit()
     {
         EndGame(phone.cashValue);
@@ -233,5 +231,6 @@ public class GameManager : MonoBehaviour {
     {
         phone.showPhone = false;
         SoundManager.instance.PlayPhoneSound(false);
+>>>>>>> merge rev
     }
 }
