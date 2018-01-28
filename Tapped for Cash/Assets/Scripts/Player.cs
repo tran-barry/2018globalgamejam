@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
 
     private float m_maxScanDistance = 1.3f;
     private float m_maxDistValue = 0.5f;
+    private float m_baseFillTime = 20f; //  20%/second
 
     private int m_stolenCash = 0;
 
@@ -219,10 +220,15 @@ public class Player : MonoBehaviour {
                 if (!tempCardSlots[i].isDrained)
                 {
                     //ACTIVE SLOT
-                    //calculate fill rate
+                    //calculate visual fill rate
                     float fillRate = Mathf.Lerp(1, m_maxDistValue, Vector2.Distance(tempCardSlots[i].card.gameObject.transform.position, gameObject.transform.position));
+                    //calculate actual percent added
+                    float percentAdded = CalculateFillRate(tempCardSlots[i]) * m_baseFillTime * Time.deltaTime;
+
                     //update
-                    tempCardSlots[i].percentComplete += fillRate;
+                    
+                    tempCardSlots[i].percentComplete += percentAdded;
+                    Debug.Log(tempCardSlots[i].percentComplete);
                     bool justDrained = false;
                     if (tempCardSlots[i].percentComplete >= 100f)
                     {
@@ -298,6 +304,8 @@ public class CardSlot
         {
             card = tempCard;
             slotFilled = true;
+            isDrained = card.Collected;
+            percentComplete = (isDrained ? 100f: 0f );
         }
         else
         {
