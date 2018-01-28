@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 222539561389801760}
   - component: {fileID: 114425446186726180}
   - component: {fileID: 114260777607778302}
+  - component: {fileID: 95730989924597004}
   m_Layer: 5
   m_Name: Notification
   m_TagString: Untagged
@@ -843,6 +844,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &95730989924597004
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1121893157992506}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8fbd6671943a9514db0c1e044f9fdc88, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114000074926075040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1280,11 +1298,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   safety: 0
   money: 0
-  enemyPanelControl: 0
+  slot: 0
   signal: 0
   progression: 0
   cashValue: 0
   hider: 0
+  showPhone: 0
 --- !u!114 &114183889290821602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1628,7 +1647,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbee1a55c486f094fa65a59e584ac6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  authorText: {fileID: 0}
 --- !u!114 &114389343975306916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3936,7 +3954,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.09900001, y: 0.61329323}
   m_AnchorMax: {x: 0.8985373, y: 0.84770685}
-  m_AnchoredPosition: {x: 0.14189, y: 53.4}
+  m_AnchoredPosition: {x: 0.7, y: -2.6}
   m_SizeDelta: {x: -0.0000076294, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224744549920195342

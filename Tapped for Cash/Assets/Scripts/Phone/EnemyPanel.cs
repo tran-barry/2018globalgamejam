@@ -72,6 +72,18 @@ public class EnemyPanel : MonoBehaviour {
         }
     }
 
+    public void ShowPanel(bool show)
+    {
+        if (!show)
+        {
+            hider.color = Color.white;
+        }
+        else
+        {
+            hider.color = Color.clear;
+        }
+    }
+
     public void CashValue(int fCashValue)
     {
         cashValue.text = "$" + fCashValue;
