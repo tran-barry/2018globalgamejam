@@ -38,6 +38,8 @@ public class Dude_Detection : MonoBehaviour {
             GameManager.instance.ApplyDetectPenaltyDuringLockdown();
             return;
         }
+        if (!GameManager.instance.isScanning)
+            return;
         startSuspicion = 0.0f;
         suspicionLevel = 0;
     }
@@ -54,6 +56,8 @@ public class Dude_Detection : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (!GameManager.instance.isScanning)
+            return;
         float currentSuspicion = startSuspicion;
         startSuspicion += Time.deltaTime;
         //Debug.Log("sus: " + startSuspicion.ToString());

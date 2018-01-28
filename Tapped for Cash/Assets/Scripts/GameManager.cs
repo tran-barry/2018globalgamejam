@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
     private const float lockdownTimeSeconds = 20;
     private GameState _gamestate;
     public Phone phone;
+    public bool isScanning = false;
 
     private float lockDownTimeRemaining;
     [SerializeField] private GameObject pausePanel;
@@ -252,6 +253,7 @@ public class GameManager : MonoBehaviour {
 
     public void TakeOutPhone()
     {
+        isScanning = true;
         phone.showPhone = true;
         SoundManager.instance.PlayPhoneSound(true);
 
@@ -261,6 +263,7 @@ public class GameManager : MonoBehaviour {
 
     public void PutAwayPhone()
     {
+        isScanning = false;
         phone.showPhone = false;
         SoundManager.instance.PlayPhoneSound(false);
 
