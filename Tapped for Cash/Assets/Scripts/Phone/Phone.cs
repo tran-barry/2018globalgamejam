@@ -83,5 +83,5 @@ public class Phone : MonoBehaviour {
     void Hider(bool fHider)
     {
         enemyPanel[enemyPanelControl].Hider(fHider);
-    }
+    } 
 }

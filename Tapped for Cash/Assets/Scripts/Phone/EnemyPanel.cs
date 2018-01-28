@@ -72,5 +72,5 @@ public class EnemyPanel : MonoBehaviour {
         {
             hider.color = Color.clear;
         }
-    }
+    } 
 }

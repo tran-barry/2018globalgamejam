@@ -32,5 +32,5 @@ public class CarrierBar : MonoBehaviour
     public void Money (int fMoney)
     {
         money.text = "$" + fMoney;
-    }
+    } 
 }
