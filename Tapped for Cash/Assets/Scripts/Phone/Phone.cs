@@ -92,7 +92,7 @@ public class Phone : MonoBehaviour {
 
     public void CreditCard(int slot, int cardSlot)
     {
-        enemyPanel[slot].CreditCard(cardSlot);
+        //enemyPanel[slot].CreditCard(cardSlot);
     }
 
     public void Signal(int slot, int fSignal)
