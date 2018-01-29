@@ -232,6 +232,7 @@ public class GameManager : MonoBehaviour {
         phone.Signal(slot, (int)hack);
         phone.Progression(slot, hackPercentage);
         phone.CashValue(slot, cashValue);
+        phone.CardBrand(slot, card);
         
     }
 

@@ -24,12 +24,6 @@ public class EnemyPanel : MonoBehaviour {
         cashValue = transform.Find("CashValue").GetComponent<TextMeshProUGUI>();
         hider = transform.Find("Hider").GetComponent<Image>();
     }
-
-    public void CreditCard()
-    {
-
-    }
-
     public void Signal (int fSignal)
     {
         if (fSignal == 1)
